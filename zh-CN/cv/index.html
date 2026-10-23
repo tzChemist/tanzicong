@@ -192,7 +192,21 @@
         </div>
         <div class="flex-none flex items-center gap-2">
           
-<a href="/tanzicong/cv/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="Switch to English" aria-label="Switch to English">
+<script>
+// Global data for the client-side language re-linker. The navbar / sidebar are
+// NOT replaced by Swup (Swup only swaps #swup), so the switch button would keep
+// a stale href after navigating via the sidebar menu. Exposing the site root +
+// the full page list lets JS recompute the correct target URL for the CURRENT
+// location on every navigation. Guarded so the two partial instances (mobile +
+// desktop) don't clobber each other.
+if (!window.__rcLangSwitch) {
+  window.__rcLangSwitch = {
+    root: '/tanzicong/',
+    pages: ["cv/index.html","talks/index.html","projects/index.html","notes/index.html","publications/index.html","zh-CN/index.html","zh-CN/cv/index.html","zh-CN/publications/index.html"]
+  };
+}
+</script>
+<a href="/tanzicong/cv/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="Switch to English" aria-label="Switch to English" data-rc-lang="en">
   <i class="fas fa-globe"></i>EN
 </a>
 
@@ -555,6 +569,63 @@
   <div id="swup" class="lg:ml-80 pt-20 px-4 lg:px-10 pb-8 flex-1 min-h-0">
     
 
+<style>
+  /* ===== CV 页面专属排版 ===== */
+  .rc-cv-section {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: color-mix(in oklab, var(--rc-accent) 92%, transparent);
+    letter-spacing: -0.015em;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 2px solid color-mix(in oklab, var(--rc-accent) 26%, transparent);
+  }
+  .post-content { font-size: 1.125rem; }
+  .post-content .rc-tag { font-size: 0.72em; }
+  .rc-cv-table { min-width: 0 !important; font-size: 0.95em; }
+  .rc-cv-table th { white-space: nowrap; }
+  .rc-cv-table td.rc-cv-period { white-space: nowrap; }
+  .rc-cv-exp {
+    margin: 1.75rem 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed color-mix(in oklab, var(--color-base-300) 85%, transparent);
+  }
+  .rc-cv-exp:last-child { border-bottom: none; padding-bottom: 0; }
+  .rc-cv-exp-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 1.25rem;
+  }
+  .rc-cv-exp-period,
+  .rc-cv-exp-institution {
+    font-weight: 700;
+    color: color-mix(in oklab, var(--rc-accent) 92%, transparent);
+  }
+  .rc-cv-exp-period { white-space: nowrap; }
+  .rc-cv-exp-line2 {
+    margin-top: 0.45rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+  }
+  .rc-cv-exp-position { font-weight: 700; }
+  .rc-cv-exp-funding,
+  .rc-cv-exp-group,
+  .rc-cv-exp-advisor {
+    color: color-mix(in oklab, var(--color-base-content) 72%, transparent);
+  }
+  .rc-cv-exp-duties { margin-top: 0.65rem; }
+  .rc-cv-lbl {
+    font-weight: 650;
+    color: color-mix(in oklab, var(--rc-accent) 92%, transparent);
+    margin-right: 0.5rem;
+  }
+  .rc-cv-exp-duties ul { margin: 0.35rem 0 0; }
+</style>
+
 <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-12">
 <article class="mx-auto max-w-3xl rc-reveal w-full">
 
@@ -575,117 +646,187 @@
 
     <!-- ============ Education ============ -->
     
-    <h2 id="education">教育经历</h2>
-    
-      <h3>Ph.D. in Computer Science</h3>
-      <p class="rc-muted"><em>Stanford University · 2015 - 2019</em></p>
-      <p>Specialized in Machine Learning and Artificial Intelligence</p>
-    
-      <h3>M.S. in Computer Science</h3>
-      <p class="rc-muted"><em>Massachusetts Institute of Technology · 2013 - 2015</em></p>
-      <p>Focus on Natural Language Processing</p>
-    
-      <h3>B.S. in Computer Science</h3>
-      <p class="rc-muted"><em>University of California, Berkeley · 2009 - 2013</em></p>
-      <p>Graduated with Honors</p>
-    
+    <h2 id="education" class="rc-cv-section">教育经历</h2>
+    <table class="rc-cv-table">
+      <thead>
+        <tr>
+          <th>时间</th>
+          <th>学校</th>
+          <th>专业 · 学位</th>
+          <th>导师</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td class="rc-cv-period">2018.10 - 2022.06</td>
+            <td>香港城市大学</td>
+            <td>哲学博士（化学）</td>
+            <td>彭詠康博士</td>
+          </tr>
+        
+          <tr>
+            <td class="rc-cv-period">2017.09 - 2018.07</td>
+            <td>香港城市大学</td>
+            <td>能源与环境理学硕士</td>
+            <td>尚进教授</td>
+          </tr>
+        
+          <tr>
+            <td class="rc-cv-period">2013.09 - 2017.06</td>
+            <td>广州大学</td>
+            <td>环境工程学士</td>
+            <td>—</td>
+          </tr>
+        
+      </tbody>
+    </table>
     
 
     <!-- ============ Professional Experience ============ -->
     
-    <h2 id="experience">职业经历</h2>
+    <h2 id="experience" class="rc-cv-section">职业经历</h2>
     
-      <h3>Associate Professor</h3>
-      <p class="rc-muted"><em>Stanford University · 2021 - Present</em></p>
-      <p>Leading research in machine learning and artificial intelligence</p>
-      
-        <ul>
+      <div class="rc-cv-exp">
+        <div class="rc-cv-exp-head">
+          <span class="rc-cv-exp-period">2024.02 - 至今</span>
+          <span class="rc-cv-exp-institution">广州大学 环境科学与工程学院</span>
+        </div>
+        <div class="rc-cv-exp-line2">
+          <span class="rc-cv-exp-position">讲师</span>
           
-            <li>Supervising 5 PhD students and 3 postdoctoral researchers</li>
+          <span class="rc-cv-exp-group">刘娟教授团队</span>
           
-            <li>Teaching advanced courses in machine learning and AI</li>
-          
-            <li>Securing and managing multiple research grants</li>
-          
-            <li>Publishing in top-tier conferences and journals</li>
-          
-        </ul>
-      
+        </div>
+        
+          <div class="rc-cv-exp-duties">
+            <span class="rc-cv-lbl">工作内容</span>
+            <ul>
+              
+                <li>主持国家自然科学基金青年科学基金项目（C类）：基于铊同位素分馏解析纳米二氧化铈抑制菜心富集铊的机制（2027.1 - 2029.12）</li>
+              
+                <li>主持广州市基础与应用基础研究专题：改性沸石的纳米限域效应增强非均相芬顿反应对全氟辛酸去除机制研究（2025.10 - 2027.10）</li>
+              
+                <li>主持广东省普通高校青年创新人才类项目（科技类）：水溶液中铊对纳米二氧化铈表面微电场的电化学信号响应机制及构建快速检测系统研究（2025.10 - 2027.10）</li>
+              
+                <li>承担本科专业课 2 门、研究生专业课 2 门、公共选修课 4 门；担任环境科学 252 班主任及学院“立德树人”导师</li>
+              
+            </ul>
+          </div>
+        
+      </div>
     
-      <h3>Assistant Professor</h3>
-      <p class="rc-muted"><em>University of California, Berkeley · 2019 - 2021</em></p>
-      <p>Established and led the AI Research Lab</p>
-      
-        <ul>
+      <div class="rc-cv-exp">
+        <div class="rc-cv-exp-head">
+          <span class="rc-cv-exp-period">2023.06 - 2024.02</span>
+          <span class="rc-cv-exp-institution">香港理工大学</span>
+        </div>
+        <div class="rc-cv-exp-line2">
+          <span class="rc-cv-exp-position">博士后</span>
           
-            <li>Developed and taught undergraduate and graduate courses</li>
           
-            <li>Mentored 3 PhD students</li>
-          
-            <li>Published 10+ papers in top conferences</li>
-          
-        </ul>
-      
+          <span class="rc-cv-exp-advisor">合作导师：劳子桓 副教授</span>
+        </div>
+        
+          <div class="rc-cv-exp-duties">
+            <span class="rc-cv-lbl">工作内容</span>
+            <ul>
+              
+                <li>利用 STEM 电镜结合 EELS 能谱鉴别纳米材料不同表面的电子结构及化学性质</li>
+              
+                <li>设计高效、安全的 CeO₂ 生物材料缓解神经退行性疾病</li>
+              
+                <li>基于 CeO₂ 的表面化学设计具有抗癌（菌）活性的纳米酶</li>
+              
+            </ul>
+          </div>
+        
+      </div>
     
-      <h3>Research Scientist</h3>
-      <p class="rc-muted"><em>Google AI · 2018 - 2019</em></p>
-      <p>Worked on natural language processing projects</p>
-      
-        <ul>
+      <div class="rc-cv-exp">
+        <div class="rc-cv-exp-head">
+          <span class="rc-cv-exp-period">2022.11 - 2023.05</span>
+          <span class="rc-cv-exp-institution">香港城市大学</span>
+        </div>
+        <div class="rc-cv-exp-line2">
+          <span class="rc-cv-exp-position">博士后</span>
           
-            <li>Developed new algorithms for text understanding</li>
           
-            <li>Collaborated with product teams on AI applications</li>
-          
-            <li>Published 5 papers and filed 3 patents</li>
-          
-        </ul>
-      
+          <span class="rc-cv-exp-advisor">合作导师：彭詠康博士</span>
+        </div>
+        
+          <div class="rc-cv-exp-duties">
+            <span class="rc-cv-lbl">工作内容</span>
+            <ul>
+              
+                <li>掌握分子探针辅助固体核磁共振技术，表征 CeO₂、TiO₂ 等纳米材料的表面化学性质</li>
+              
+                <li>设计原位 Raman、原位 FTIR 实验，结合 DFT 理论计算揭示 CeO₂ 活化 H₂O₂、甲醇的机理</li>
+              
+                <li>连续两年担任化学实验课程助教；协助导师指导 1 名本科生、4 名硕士生完成毕业论文，辅导 2 名博士生完成理论计算及材料表征研究</li>
+              
+                <li>与武汉大学、中国科学院精密测量科学与技术创新研究院及陕西科技大学开展合作交流</li>
+              
+            </ul>
+          </div>
+        
+      </div>
     
     
 
     <!-- ============ Skills ============ -->
     
-    <h2 id="skills">专业技能</h2>
+    <h2 id="skills" class="rc-cv-section">专业技能</h2>
     
-      <h3>Programming Languages</h3>
+      <h3>实验与表征技术</h3>
       <div class="flex flex-wrap gap-1.5 my-3">
         
-          <span class="rc-tag">Python</span>
+          <span class="rc-tag">STEM 电镜</span>
         
-          <span class="rc-tag">C++</span>
+          <span class="rc-tag">EELS 能谱</span>
         
-          <span class="rc-tag">Java</span>
+          <span class="rc-tag">固体核磁共振</span>
         
-          <span class="rc-tag">JavaScript</span>
+          <span class="rc-tag">原位 Raman</span>
+        
+          <span class="rc-tag">原位 FTIR</span>
+        
+          <span class="rc-tag">DFT 理论计算</span>
         
       </div>
     
-      <h3>Machine Learning</h3>
+      <h3>研究专长</h3>
       <div class="flex flex-wrap gap-1.5 my-3">
         
-          <span class="rc-tag">Deep Learning</span>
+          <span class="rc-tag">纳米酶</span>
         
-          <span class="rc-tag">Natural Language Processing</span>
+          <span class="rc-tag">表面化学</span>
         
-          <span class="rc-tag">Computer Vision</span>
+          <span class="rc-tag">环境催化</span>
         
-          <span class="rc-tag">Reinforcement Learning</span>
+          <span class="rc-tag">纳米材料合成</span>
+        
+          <span class="rc-tag">环境修复</span>
         
       </div>
     
-      <h3>Tools &amp; Frameworks</h3>
+      <h3>管理技能</h3>
       <div class="flex flex-wrap gap-1.5 my-3">
         
-          <span class="rc-tag">TensorFlow</span>
+          <span class="rc-tag">实验室安全管理</span>
         
-          <span class="rc-tag">PyTorch</span>
+          <span class="rc-tag">科研项目经费管理</span>
         
-          <span class="rc-tag">scikit-learn</span>
+          <span class="rc-tag">实验室搭建流程</span>
         
-          <span class="rc-tag">Git</span>
+      </div>
+    
+      <h3>教学技能</h3>
+      <div class="flex flex-wrap gap-1.5 my-3">
         
-          <span class="rc-tag">Docker</span>
+          <span class="rc-tag">线上线下英语授课</span>
+        
+          <span class="rc-tag">本硕学生论文指导</span>
         
       </div>
     
@@ -693,67 +834,46 @@
 
     <!-- ============ Awards & Honors ============ -->
     
-    <h2 id="awards">荣誉奖项</h2>
+    <h2 id="awards" class="rc-cv-section">荣誉奖项</h2>
     <ul>
       
-        <li><strong>Best Paper Award</strong> — International Conference on Machine Learning (2022)<br /><span class="rc-muted">For outstanding contribution to the field of machine learning</span></li>
+        <li><strong>优秀墙报奖</strong> — 中国化学会第32届学术年会（纳米表征与检测技术分会） (2021.04)</li>
       
-        <li><strong>Early Career Research Award</strong> — National Science Foundation (2021-02-21)<br /><span class="rc-muted">Recognizing exceptional promise in research</span></li>
+        <li><strong>周逸卿研究生院奖学金（全校 5 名之一）</strong> — 香港城市大学 (2020.08)</li>
       
-        <li><strong>Teaching Excellence Award</strong> — Stanford University (2020)<br /><span class="rc-muted">For outstanding contributions to teaching</span></li>
+        <li><strong>杰出学术研究表现奖</strong> — 香港城市大学 (2020.08)</li>
       
-    </ul>
-    
-
-    <!-- ============ Languages ============ -->
-    
-    <h2 id="languages">语言能力</h2>
-    <ul>
+        <li><strong>优秀毕业生</strong> — 香港城市大学 (2018.07)</li>
       
-        <li><strong>English</strong> — Native</li>
+        <li><strong>三等奖学金</strong> — 广州大学 (2016.11)</li>
       
-        <li><strong>Spanish</strong> — Professional</li>
-      
-        <li><strong>Mandarin</strong> — Intermediate</li>
+        <li><strong>一等奖学金及优秀学生</strong> — 广州大学 (2014.12)</li>
       
     </ul>
     
 
     <!-- ============ Teaching ============ -->
     
-    <h2 id="teaching">教学经历</h2>
+    <h2 id="teaching" class="rc-cv-section">教学经历</h2>
     
-      <h3>CS229: Machine Learning</h3>
-      <p class="rc-muted"><em>Stanford University — Instructor · 2021 - Present</em></p>
-      <p>Advanced graduate course covering machine learning algorithms and applications</p>
+      <h3>本硕博课程教学</h3>
       
-        <p class="text-sm rc-muted">
-          学生数: 120 students per semester
-           · 
-          评教: 4.8/5.0
-        </p>
+      <p>承担本科专业课 2 门、研究生专业课 2 门、公共选修课 4 门</p>
       
     
-      <h3>CS106A: Programming Fundamentals</h3>
-      <p class="rc-muted"><em>Stanford University — Teaching Assistant · 2020 - 2021</em></p>
-      <p>Introductory programming course in Python</p>
+      <h3>班主任与育人导师</h3>
       
-        <p class="text-sm rc-muted">
-          学生数: 300 students
-           · 
-          评教: 4.6/5.0
-        </p>
+      <p>担任环境科学 252 班主任及学院“立德树人”导师</p>
       
     
-      <h3>AI Ethics and Society</h3>
-      <p class="rc-muted"><em>Stanford University — Co-Instructor · 2022 - Present</em></p>
-      <p>Interdisciplinary course exploring ethical implications of AI</p>
+      <h3>大湾区访学项目</h3>
       
-        <p class="text-sm rc-muted">
-          学生数: 80 students per semester
-           · 
-          评教: 4.9/5.0
-        </p>
+      <p>参与组织环境学院“文化融合，共育优才”大湾区短期访学项目，带队前往香港高校访学</p>
+      
+    
+      <h3>创新创业训练指导</h3>
+      
+      <p>指导校级大学生创新创业训练计划项目 3 项</p>
       
     
     
@@ -806,14 +926,6 @@
     
       
       <li class="rc-toc-item" data-level="1" style="--rc-lvl: 1">
-        <a href="#languages" class="rc-toc-link" data-toc-target="languages" data-level="1">
-          <span class="rc-toc-dot"></span>
-          <span class="rc-toc-label">语言能力</span>
-        </a>
-      </li>
-    
-      
-      <li class="rc-toc-item" data-level="1" style="--rc-lvl: 1">
         <a href="#teaching" class="rc-toc-link" data-toc-target="teaching" data-level="1">
           <span class="rc-toc-dot"></span>
           <span class="rc-toc-label">教学经历</span>
@@ -860,7 +972,21 @@
     </div>
     <div class="flex-none flex items-center gap-2">
       
-<a href="/tanzicong/cv/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="Switch to English" aria-label="Switch to English">
+<script>
+// Global data for the client-side language re-linker. The navbar / sidebar are
+// NOT replaced by Swup (Swup only swaps #swup), so the switch button would keep
+// a stale href after navigating via the sidebar menu. Exposing the site root +
+// the full page list lets JS recompute the correct target URL for the CURRENT
+// location on every navigation. Guarded so the two partial instances (mobile +
+// desktop) don't clobber each other.
+if (!window.__rcLangSwitch) {
+  window.__rcLangSwitch = {
+    root: '/tanzicong/',
+    pages: ["cv/index.html","talks/index.html","projects/index.html","notes/index.html","publications/index.html","zh-CN/index.html","zh-CN/cv/index.html","zh-CN/publications/index.html"]
+  };
+}
+</script>
+<a href="/tanzicong/cv/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="Switch to English" aria-label="Switch to English" data-rc-lang="en">
   <i class="fas fa-globe"></i>EN
 </a>
 
@@ -1279,6 +1405,63 @@
       document.querySelectorAll('.rc-sidebar-link').forEach(function (link) {
         var href = (link.getAttribute('href') || '').replace(/\/(index)?$/, '') || '/';
         link.classList.toggle('is-active', href === path);
+      });
+    }
+
+    // Recompute the language-switch button's href for the CURRENT location.
+    // The navbar/sidebar survive a Swup navigation (only #swup is swapped), so a
+    // button rendered on the homepage would otherwise keep a stale "homepage"
+    // target even after the user navigated to /cv/ via the sidebar menu. This
+    // derives the counterpart-language URL from location.pathname, checks it
+    // against the server-rendered page list, and falls back to that language's
+    // homepage when the counterpart page does not exist (e.g. /projects/).
+    function __rcUpdateLangSwitch() {
+      var d = window.__rcLangSwitch;
+      var links = document.querySelectorAll('.rc-lang-switch');
+      if (!links.length || !d) return;
+
+      var root = d.root;                 // e.g. '/tanzicong/'
+      var fullPath = location.pathname;  // e.g. '/tanzicong/zh-CN/cv/'
+
+      // Strip the site root to get the site-relative path.
+      var rel = fullPath;
+      if (root && root !== '/' && fullPath.indexOf(root) === 0) {
+        rel = fullPath.slice(root.length);
+      }
+      if (!rel) rel = '/';
+      else if (rel.charAt(0) !== '/') rel = '/' + rel;
+
+      // Current language.
+      var isZh = /^\/zh-CN(\/|$)/.test(rel);
+
+      // Site-relative URL of the counterpart page (no root, no index.html).
+      var relTarget;
+      if (rel === '/' ) relTarget = '/zh-CN/';
+      else if (rel === '/zh-CN/' ) relTarget = '/';
+      else if (isZh) relTarget = rel.replace(/^\/zh-CN\//, '/');
+      else relTarget = '/zh-CN' + rel;
+
+      // The counterpart's Hexo page path ('cv/index.html', 'zh-CN/cv/index.html', …).
+      var targetPagePath;
+      if (relTarget === '/' ) targetPagePath = 'index.html';
+      else if (relTarget === '/zh-CN/' ) targetPagePath = 'zh-CN/index.html';
+      else targetPagePath = relTarget.replace(/^\/+|\/+$/g, '') + '/index.html';
+
+      var hasTarget = d.pages.indexOf(targetPagePath) > -1;
+
+      // Final href (with root). Fall back to the counterpart-language homepage.
+      var href;
+      if (hasTarget) {
+        href = (root || '/') + relTarget.replace(/^\/+/, '');
+      } else {
+        href = isZh ? (root || '/') : (root || '/') + 'zh-CN/';
+      }
+
+      var targetLang = isZh ? 'en' : 'zh-CN';
+      Array.prototype.forEach.call(links, function (a) {
+        if (a.getAttribute('data-rc-lang') === targetLang) {
+          a.setAttribute('href', href);
+        }
       });
     }
 
@@ -1716,6 +1899,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       __rcInitMotion();
       __rcSetActive();
+      __rcUpdateLangSwitch();
       __rcInitToc();
       __rcInitViews();
       __rcInitTagCloud(); // before filters, so a ?tag= pre-selection is seen by the filter
@@ -1748,6 +1932,7 @@
           mTimer = window.setTimeout(function () {
             __rcInitMotion();
             __rcSetActive();
+            __rcUpdateLangSwitch();
             __rcInitToc();
             __rcInitViews();
             __rcInitTagCloud();
@@ -1926,6 +2111,7 @@
         swup.on('page:view', function () {
           // history is updated by now, so location.pathname is correct
           window.__rcSetActive && window.__rcSetActive();
+          window.__rcUpdateLangSwitch && window.__rcUpdateLangSwitch();
         });
       } catch (e) { /* if Swup fails, normal navigation still works */ }
     });

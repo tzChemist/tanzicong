@@ -192,7 +192,21 @@
         </div>
         <div class="flex-none flex items-center gap-2">
           
-<a href="/tanzicong/zh-CN/cv/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文">
+<script>
+// Global data for the client-side language re-linker. The navbar / sidebar are
+// NOT replaced by Swup (Swup only swaps #swup), so the switch button would keep
+// a stale href after navigating via the sidebar menu. Exposing the site root +
+// the full page list lets JS recompute the correct target URL for the CURRENT
+// location on every navigation. Guarded so the two partial instances (mobile +
+// desktop) don't clobber each other.
+if (!window.__rcLangSwitch) {
+  window.__rcLangSwitch = {
+    root: '/tanzicong/',
+    pages: ["cv/index.html","talks/index.html","projects/index.html","notes/index.html","publications/index.html","zh-CN/index.html","zh-CN/cv/index.html","zh-CN/publications/index.html"]
+  };
+}
+</script>
+<a href="/tanzicong/zh-CN/cv/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文" data-rc-lang="zh-CN">
   <i class="fas fa-globe"></i>中文
 </a>
 
@@ -555,6 +569,63 @@
   <div id="swup" class="lg:ml-80 pt-20 px-4 lg:px-10 pb-8 flex-1 min-h-0">
     
 
+<style>
+  /* ===== CV 页面专属排版 ===== */
+  .rc-cv-section {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: color-mix(in oklab, var(--rc-accent) 92%, transparent);
+    letter-spacing: -0.015em;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 2px solid color-mix(in oklab, var(--rc-accent) 26%, transparent);
+  }
+  .post-content { font-size: 1.125rem; }
+  .post-content .rc-tag { font-size: 0.72em; }
+  .rc-cv-table { min-width: 0 !important; font-size: 0.95em; }
+  .rc-cv-table th { white-space: nowrap; }
+  .rc-cv-table td.rc-cv-period { white-space: nowrap; }
+  .rc-cv-exp {
+    margin: 1.75rem 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed color-mix(in oklab, var(--color-base-300) 85%, transparent);
+  }
+  .rc-cv-exp:last-child { border-bottom: none; padding-bottom: 0; }
+  .rc-cv-exp-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 1.25rem;
+  }
+  .rc-cv-exp-period,
+  .rc-cv-exp-institution {
+    font-weight: 700;
+    color: color-mix(in oklab, var(--rc-accent) 92%, transparent);
+  }
+  .rc-cv-exp-period { white-space: nowrap; }
+  .rc-cv-exp-line2 {
+    margin-top: 0.45rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+  }
+  .rc-cv-exp-position { font-weight: 700; }
+  .rc-cv-exp-funding,
+  .rc-cv-exp-group,
+  .rc-cv-exp-advisor {
+    color: color-mix(in oklab, var(--color-base-content) 72%, transparent);
+  }
+  .rc-cv-exp-duties { margin-top: 0.65rem; }
+  .rc-cv-lbl {
+    font-weight: 650;
+    color: color-mix(in oklab, var(--rc-accent) 92%, transparent);
+    margin-right: 0.5rem;
+  }
+  .rc-cv-exp-duties ul { margin: 0.35rem 0 0; }
+</style>
+
 <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-12">
 <article class="mx-auto max-w-3xl rc-reveal w-full">
 
@@ -575,117 +646,187 @@
 
     <!-- ============ Education ============ -->
     
-    <h2 id="education">Education</h2>
-    
-      <h3>Ph.D. in Computer Science</h3>
-      <p class="rc-muted"><em>Stanford University · 2015 - 2019</em></p>
-      <p>Specialized in Machine Learning and Artificial Intelligence</p>
-    
-      <h3>M.S. in Computer Science</h3>
-      <p class="rc-muted"><em>Massachusetts Institute of Technology · 2013 - 2015</em></p>
-      <p>Focus on Natural Language Processing</p>
-    
-      <h3>B.S. in Computer Science</h3>
-      <p class="rc-muted"><em>University of California, Berkeley · 2009 - 2013</em></p>
-      <p>Graduated with Honors</p>
-    
+    <h2 id="education" class="rc-cv-section">Education</h2>
+    <table class="rc-cv-table">
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Institution</th>
+          <th>Major · Degree</th>
+          <th>Supervisor</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td class="rc-cv-period">2018.10 - 2022.06</td>
+            <td>City University of Hong Kong</td>
+            <td>Ph.D. in Chemistry</td>
+            <td>Dr. Yung-Kang Peng</td>
+          </tr>
+        
+          <tr>
+            <td class="rc-cv-period">2017.09 - 2018.07</td>
+            <td>City University of Hong Kong</td>
+            <td>M.Sc. in Energy and Environment</td>
+            <td>Prof. Jin Shang</td>
+          </tr>
+        
+          <tr>
+            <td class="rc-cv-period">2013.09 - 2017.06</td>
+            <td>Guangzhou University</td>
+            <td>B.Eng. in Environmental Engineering</td>
+            <td>—</td>
+          </tr>
+        
+      </tbody>
+    </table>
     
 
     <!-- ============ Professional Experience ============ -->
     
-    <h2 id="experience">Professional Experience</h2>
+    <h2 id="experience" class="rc-cv-section">Professional Experience</h2>
     
-      <h3>Associate Professor</h3>
-      <p class="rc-muted"><em>Stanford University · 2021 - Present</em></p>
-      <p>Leading research in machine learning and artificial intelligence</p>
-      
-        <ul>
+      <div class="rc-cv-exp">
+        <div class="rc-cv-exp-head">
+          <span class="rc-cv-exp-period">2024.02 - Present</span>
+          <span class="rc-cv-exp-institution">Guangzhou University, School of Environmental Science and Engineering</span>
+        </div>
+        <div class="rc-cv-exp-line2">
+          <span class="rc-cv-exp-position">Lecturer</span>
           
-            <li>Supervising 5 PhD students and 3 postdoctoral researchers</li>
+          <span class="rc-cv-exp-group">Prof. Juan Liu&#39;s research group</span>
           
-            <li>Teaching advanced courses in machine learning and AI</li>
-          
-            <li>Securing and managing multiple research grants</li>
-          
-            <li>Publishing in top-tier conferences and journals</li>
-          
-        </ul>
-      
+        </div>
+        
+          <div class="rc-cv-exp-duties">
+            <span class="rc-cv-lbl">Duties</span>
+            <ul>
+              
+                <li>PI, National Natural Science Foundation of China (Young Scientists Fund, Category C): &#34;Elucidating the mechanism of ceria nanoparticle-mediated inhibition of thallium accumulation in flowering Chinese cabbage via thallium isotope fractionation&#34; (2027.01 - 2029.12)</li>
+              
+                <li>PI, Guangzhou Basic and Applied Basic Research Program: &#34;Nano-confinement effect of modified zeolites for enhanced heterogeneous Fenton removal of perfluorooctanoic acid (PFOA)&#34; (2025.10 - 2027.10)</li>
+              
+                <li>PI, Guangdong Provincial University Young Innovative Talent Project (Science &amp; Technology): &#34;Electrochemical signal response of thallium to the surface microelectric field of ceria nanoparticles in aqueous solution and construction of a rapid detection system&#34; (2025.10 - 2027.10)</li>
+              
+                <li>Teaching 2 undergraduate major courses, 2 postgraduate major courses, and 4 general elective courses; class advisor for Environmental Science 252 and &#34;moral education&#34; mentor of the school</li>
+              
+            </ul>
+          </div>
+        
+      </div>
     
-      <h3>Assistant Professor</h3>
-      <p class="rc-muted"><em>University of California, Berkeley · 2019 - 2021</em></p>
-      <p>Established and led the AI Research Lab</p>
-      
-        <ul>
+      <div class="rc-cv-exp">
+        <div class="rc-cv-exp-head">
+          <span class="rc-cv-exp-period">2023.06 - 2024.02</span>
+          <span class="rc-cv-exp-institution">The Hong Kong Polytechnic University</span>
+        </div>
+        <div class="rc-cv-exp-line2">
+          <span class="rc-cv-exp-position">Postdoctoral Fellow</span>
           
-            <li>Developed and taught undergraduate and graduate courses</li>
           
-            <li>Mentored 3 PhD students</li>
-          
-            <li>Published 10+ papers in top conferences</li>
-          
-        </ul>
-      
+          <span class="rc-cv-exp-advisor">Advisor: Assoc. Prof. Zihuan Lao</span>
+        </div>
+        
+          <div class="rc-cv-exp-duties">
+            <span class="rc-cv-lbl">Duties</span>
+            <ul>
+              
+                <li>Identified the electronic structure and chemical properties of different nanomaterial surfaces using STEM combined with EELS</li>
+              
+                <li>Designed efficient and safe CeO₂ biomaterials to alleviate neurodegenerative diseases</li>
+              
+                <li>Designed nanozymes with anticancer and antibacterial activity based on CeO₂ surface chemistry</li>
+              
+            </ul>
+          </div>
+        
+      </div>
     
-      <h3>Research Scientist</h3>
-      <p class="rc-muted"><em>Google AI · 2018 - 2019</em></p>
-      <p>Worked on natural language processing projects</p>
-      
-        <ul>
+      <div class="rc-cv-exp">
+        <div class="rc-cv-exp-head">
+          <span class="rc-cv-exp-period">2022.11 - 2023.05</span>
+          <span class="rc-cv-exp-institution">City University of Hong Kong</span>
+        </div>
+        <div class="rc-cv-exp-line2">
+          <span class="rc-cv-exp-position">Postdoctoral Fellow</span>
           
-            <li>Developed new algorithms for text understanding</li>
           
-            <li>Collaborated with product teams on AI applications</li>
-          
-            <li>Published 5 papers and filed 3 patents</li>
-          
-        </ul>
-      
+          <span class="rc-cv-exp-advisor">Advisor: Dr. Yung-Kang Peng</span>
+        </div>
+        
+          <div class="rc-cv-exp-duties">
+            <span class="rc-cv-lbl">Duties</span>
+            <ul>
+              
+                <li>Characterized the surface chemistry of CeO₂ and TiO₂ nanomaterials using molecular-probe-assisted solid-state NMR</li>
+              
+                <li>Elucidated the mechanisms of H₂O₂ and methanol activation on CeO₂ through in-situ Raman and in-situ FTIR experiments combined with DFT calculations</li>
+              
+                <li>Served as teaching assistant for chemistry laboratory courses for two consecutive years; co-supervised the theses of 1 undergraduate and 4 master&#39;s students, and assisted 2 Ph.D. students with theoretical calculations and material characterization</li>
+              
+                <li>Collaborated with Wuhan University, the Innovation Academy for Precision Measurement Science and Technology (CAS), and Shaanxi University of Science and Technology</li>
+              
+            </ul>
+          </div>
+        
+      </div>
     
     
 
     <!-- ============ Skills ============ -->
     
-    <h2 id="skills">Skills</h2>
+    <h2 id="skills" class="rc-cv-section">Skills</h2>
     
-      <h3>Programming Languages</h3>
+      <h3>Experimental &amp; Characterization Techniques</h3>
       <div class="flex flex-wrap gap-1.5 my-3">
         
-          <span class="rc-tag">Python</span>
+          <span class="rc-tag">STEM microscopy</span>
         
-          <span class="rc-tag">C++</span>
+          <span class="rc-tag">EELS spectroscopy</span>
         
-          <span class="rc-tag">Java</span>
+          <span class="rc-tag">Solid-state NMR</span>
         
-          <span class="rc-tag">JavaScript</span>
+          <span class="rc-tag">In-situ Raman</span>
+        
+          <span class="rc-tag">In-situ FTIR</span>
+        
+          <span class="rc-tag">DFT calculations</span>
         
       </div>
     
-      <h3>Machine Learning</h3>
+      <h3>Research Expertise</h3>
       <div class="flex flex-wrap gap-1.5 my-3">
         
-          <span class="rc-tag">Deep Learning</span>
+          <span class="rc-tag">Nanozymes</span>
         
-          <span class="rc-tag">Natural Language Processing</span>
+          <span class="rc-tag">Surface chemistry</span>
         
-          <span class="rc-tag">Computer Vision</span>
+          <span class="rc-tag">Environmental catalysis</span>
         
-          <span class="rc-tag">Reinforcement Learning</span>
+          <span class="rc-tag">Nanomaterial synthesis</span>
+        
+          <span class="rc-tag">Environmental remediation</span>
         
       </div>
     
-      <h3>Tools &amp; Frameworks</h3>
+      <h3>Management Skills</h3>
       <div class="flex flex-wrap gap-1.5 my-3">
         
-          <span class="rc-tag">TensorFlow</span>
+          <span class="rc-tag">Laboratory safety management</span>
         
-          <span class="rc-tag">PyTorch</span>
+          <span class="rc-tag">Research grant management</span>
         
-          <span class="rc-tag">scikit-learn</span>
+          <span class="rc-tag">Laboratory setup</span>
         
-          <span class="rc-tag">Git</span>
+      </div>
+    
+      <h3>Teaching Skills</h3>
+      <div class="flex flex-wrap gap-1.5 my-3">
         
-          <span class="rc-tag">Docker</span>
+          <span class="rc-tag">Online and offline English-medium teaching</span>
+        
+          <span class="rc-tag">Thesis supervision (B.Sc. &amp; M.Sc.)</span>
         
       </div>
     
@@ -693,67 +834,46 @@
 
     <!-- ============ Awards & Honors ============ -->
     
-    <h2 id="awards">Awards &amp; Honors</h2>
+    <h2 id="awards" class="rc-cv-section">Awards &amp; Honors</h2>
     <ul>
       
-        <li><strong>Best Paper Award</strong> — International Conference on Machine Learning (2022)<br /><span class="rc-muted">For outstanding contribution to the field of machine learning</span></li>
+        <li><strong>Best Poster Award</strong> — The 32nd CCS National Congress (Nanomaterial Characterization and Detection Technology Session) (2021.04)</li>
       
-        <li><strong>Early Career Research Award</strong> — National Science Foundation (2021-02-21)<br /><span class="rc-muted">Recognizing exceptional promise in research</span></li>
+        <li><strong>Chow Yei Ching School of Graduate Studies Scholarship (one of five recipients university-wide)</strong> — City University of Hong Kong (2020.08)</li>
       
-        <li><strong>Teaching Excellence Award</strong> — Stanford University (2020)<br /><span class="rc-muted">For outstanding contributions to teaching</span></li>
+        <li><strong>Outstanding Academic Performance Award</strong> — City University of Hong Kong (2020.08)</li>
       
-    </ul>
-    
-
-    <!-- ============ Languages ============ -->
-    
-    <h2 id="languages">Languages</h2>
-    <ul>
+        <li><strong>Outstanding Graduate</strong> — City University of Hong Kong (2018.07)</li>
       
-        <li><strong>English</strong> — Native</li>
+        <li><strong>Third-class Scholarship</strong> — Guangzhou University (2016.11)</li>
       
-        <li><strong>Spanish</strong> — Professional</li>
-      
-        <li><strong>Mandarin</strong> — Intermediate</li>
+        <li><strong>First-class Scholarship and Outstanding Student</strong> — Guangzhou University (2014.12)</li>
       
     </ul>
     
 
     <!-- ============ Teaching ============ -->
     
-    <h2 id="teaching">Teaching Experience</h2>
+    <h2 id="teaching" class="rc-cv-section">Teaching Experience</h2>
     
-      <h3>CS229: Machine Learning</h3>
-      <p class="rc-muted"><em>Stanford University — Instructor · 2021 - Present</em></p>
-      <p>Advanced graduate course covering machine learning algorithms and applications</p>
+      <h3>Undergraduate &amp; Postgraduate Teaching</h3>
       
-        <p class="text-sm rc-muted">
-          Students: 120 students per semester
-           · 
-          Evaluation: 4.8/5.0
-        </p>
+      <p>Teaching 2 undergraduate major courses, 2 postgraduate major courses, and 4 general elective courses</p>
       
     
-      <h3>CS106A: Programming Fundamentals</h3>
-      <p class="rc-muted"><em>Stanford University — Teaching Assistant · 2020 - 2021</em></p>
-      <p>Introductory programming course in Python</p>
+      <h3>Class Advisor &amp; Mentorship</h3>
       
-        <p class="text-sm rc-muted">
-          Students: 300 students
-           · 
-          Evaluation: 4.6/5.0
-        </p>
+      <p>Class advisor for Environmental Science 252 and &#34;moral education&#34; mentor of the school</p>
       
     
-      <h3>AI Ethics and Society</h3>
-      <p class="rc-muted"><em>Stanford University — Co-Instructor · 2022 - Present</em></p>
-      <p>Interdisciplinary course exploring ethical implications of AI</p>
+      <h3>Greater Bay Area Study Tour</h3>
       
-        <p class="text-sm rc-muted">
-          Students: 80 students per semester
-           · 
-          Evaluation: 4.9/5.0
-        </p>
+      <p>Co-organized the school&#39;s short-term Greater Bay Area study tour and led students on visits to universities in Hong Kong</p>
+      
+    
+      <h3>Innovation &amp; Entrepreneurship Mentoring</h3>
+      
+      <p>Mentored 3 university-level student innovation and entrepreneurship training projects</p>
       
     
     
@@ -806,14 +926,6 @@
     
       
       <li class="rc-toc-item" data-level="1" style="--rc-lvl: 1">
-        <a href="#languages" class="rc-toc-link" data-toc-target="languages" data-level="1">
-          <span class="rc-toc-dot"></span>
-          <span class="rc-toc-label">Languages</span>
-        </a>
-      </li>
-    
-      
-      <li class="rc-toc-item" data-level="1" style="--rc-lvl: 1">
         <a href="#teaching" class="rc-toc-link" data-toc-target="teaching" data-level="1">
           <span class="rc-toc-dot"></span>
           <span class="rc-toc-label">Teaching Experience</span>
@@ -860,7 +972,21 @@
     </div>
     <div class="flex-none flex items-center gap-2">
       
-<a href="/tanzicong/zh-CN/cv/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文">
+<script>
+// Global data for the client-side language re-linker. The navbar / sidebar are
+// NOT replaced by Swup (Swup only swaps #swup), so the switch button would keep
+// a stale href after navigating via the sidebar menu. Exposing the site root +
+// the full page list lets JS recompute the correct target URL for the CURRENT
+// location on every navigation. Guarded so the two partial instances (mobile +
+// desktop) don't clobber each other.
+if (!window.__rcLangSwitch) {
+  window.__rcLangSwitch = {
+    root: '/tanzicong/',
+    pages: ["cv/index.html","talks/index.html","projects/index.html","notes/index.html","publications/index.html","zh-CN/index.html","zh-CN/cv/index.html","zh-CN/publications/index.html"]
+  };
+}
+</script>
+<a href="/tanzicong/zh-CN/cv/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文" data-rc-lang="zh-CN">
   <i class="fas fa-globe"></i>中文
 </a>
 
@@ -1279,6 +1405,63 @@
       document.querySelectorAll('.rc-sidebar-link').forEach(function (link) {
         var href = (link.getAttribute('href') || '').replace(/\/(index)?$/, '') || '/';
         link.classList.toggle('is-active', href === path);
+      });
+    }
+
+    // Recompute the language-switch button's href for the CURRENT location.
+    // The navbar/sidebar survive a Swup navigation (only #swup is swapped), so a
+    // button rendered on the homepage would otherwise keep a stale "homepage"
+    // target even after the user navigated to /cv/ via the sidebar menu. This
+    // derives the counterpart-language URL from location.pathname, checks it
+    // against the server-rendered page list, and falls back to that language's
+    // homepage when the counterpart page does not exist (e.g. /projects/).
+    function __rcUpdateLangSwitch() {
+      var d = window.__rcLangSwitch;
+      var links = document.querySelectorAll('.rc-lang-switch');
+      if (!links.length || !d) return;
+
+      var root = d.root;                 // e.g. '/tanzicong/'
+      var fullPath = location.pathname;  // e.g. '/tanzicong/zh-CN/cv/'
+
+      // Strip the site root to get the site-relative path.
+      var rel = fullPath;
+      if (root && root !== '/' && fullPath.indexOf(root) === 0) {
+        rel = fullPath.slice(root.length);
+      }
+      if (!rel) rel = '/';
+      else if (rel.charAt(0) !== '/') rel = '/' + rel;
+
+      // Current language.
+      var isZh = /^\/zh-CN(\/|$)/.test(rel);
+
+      // Site-relative URL of the counterpart page (no root, no index.html).
+      var relTarget;
+      if (rel === '/' ) relTarget = '/zh-CN/';
+      else if (rel === '/zh-CN/' ) relTarget = '/';
+      else if (isZh) relTarget = rel.replace(/^\/zh-CN\//, '/');
+      else relTarget = '/zh-CN' + rel;
+
+      // The counterpart's Hexo page path ('cv/index.html', 'zh-CN/cv/index.html', …).
+      var targetPagePath;
+      if (relTarget === '/' ) targetPagePath = 'index.html';
+      else if (relTarget === '/zh-CN/' ) targetPagePath = 'zh-CN/index.html';
+      else targetPagePath = relTarget.replace(/^\/+|\/+$/g, '') + '/index.html';
+
+      var hasTarget = d.pages.indexOf(targetPagePath) > -1;
+
+      // Final href (with root). Fall back to the counterpart-language homepage.
+      var href;
+      if (hasTarget) {
+        href = (root || '/') + relTarget.replace(/^\/+/, '');
+      } else {
+        href = isZh ? (root || '/') : (root || '/') + 'zh-CN/';
+      }
+
+      var targetLang = isZh ? 'en' : 'zh-CN';
+      Array.prototype.forEach.call(links, function (a) {
+        if (a.getAttribute('data-rc-lang') === targetLang) {
+          a.setAttribute('href', href);
+        }
       });
     }
 
@@ -1716,6 +1899,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       __rcInitMotion();
       __rcSetActive();
+      __rcUpdateLangSwitch();
       __rcInitToc();
       __rcInitViews();
       __rcInitTagCloud(); // before filters, so a ?tag= pre-selection is seen by the filter
@@ -1748,6 +1932,7 @@
           mTimer = window.setTimeout(function () {
             __rcInitMotion();
             __rcSetActive();
+            __rcUpdateLangSwitch();
             __rcInitToc();
             __rcInitViews();
             __rcInitTagCloud();
@@ -1926,6 +2111,7 @@
         swup.on('page:view', function () {
           // history is updated by now, so location.pathname is correct
           window.__rcSetActive && window.__rcSetActive();
+          window.__rcUpdateLangSwitch && window.__rcUpdateLangSwitch();
         });
       } catch (e) { /* if Swup fails, normal navigation still works */ }
     });

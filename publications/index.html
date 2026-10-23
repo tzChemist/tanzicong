@@ -192,7 +192,21 @@
         </div>
         <div class="flex-none flex items-center gap-2">
           
-<a href="/tanzicong/zh-CN/publications/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文">
+<script>
+// Global data for the client-side language re-linker. The navbar / sidebar are
+// NOT replaced by Swup (Swup only swaps #swup), so the switch button would keep
+// a stale href after navigating via the sidebar menu. Exposing the site root +
+// the full page list lets JS recompute the correct target URL for the CURRENT
+// location on every navigation. Guarded so the two partial instances (mobile +
+// desktop) don't clobber each other.
+if (!window.__rcLangSwitch) {
+  window.__rcLangSwitch = {
+    root: '/tanzicong/',
+    pages: ["cv/index.html","talks/index.html","projects/index.html","notes/index.html","publications/index.html","zh-CN/index.html","zh-CN/cv/index.html","zh-CN/publications/index.html"]
+  };
+}
+</script>
+<a href="/tanzicong/zh-CN/publications/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文" data-rc-lang="zh-CN">
   <i class="fas fa-globe"></i>中文
 </a>
 
@@ -2138,7 +2152,21 @@
     </div>
     <div class="flex-none flex items-center gap-2">
       
-<a href="/tanzicong/zh-CN/publications/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文">
+<script>
+// Global data for the client-side language re-linker. The navbar / sidebar are
+// NOT replaced by Swup (Swup only swaps #swup), so the switch button would keep
+// a stale href after navigating via the sidebar menu. Exposing the site root +
+// the full page list lets JS recompute the correct target URL for the CURRENT
+// location on every navigation. Guarded so the two partial instances (mobile +
+// desktop) don't clobber each other.
+if (!window.__rcLangSwitch) {
+  window.__rcLangSwitch = {
+    root: '/tanzicong/',
+    pages: ["cv/index.html","talks/index.html","projects/index.html","notes/index.html","publications/index.html","zh-CN/index.html","zh-CN/cv/index.html","zh-CN/publications/index.html"]
+  };
+}
+</script>
+<a href="/tanzicong/zh-CN/publications/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文" data-rc-lang="zh-CN">
   <i class="fas fa-globe"></i>中文
 </a>
 
@@ -2557,6 +2585,63 @@
       document.querySelectorAll('.rc-sidebar-link').forEach(function (link) {
         var href = (link.getAttribute('href') || '').replace(/\/(index)?$/, '') || '/';
         link.classList.toggle('is-active', href === path);
+      });
+    }
+
+    // Recompute the language-switch button's href for the CURRENT location.
+    // The navbar/sidebar survive a Swup navigation (only #swup is swapped), so a
+    // button rendered on the homepage would otherwise keep a stale "homepage"
+    // target even after the user navigated to /cv/ via the sidebar menu. This
+    // derives the counterpart-language URL from location.pathname, checks it
+    // against the server-rendered page list, and falls back to that language's
+    // homepage when the counterpart page does not exist (e.g. /projects/).
+    function __rcUpdateLangSwitch() {
+      var d = window.__rcLangSwitch;
+      var links = document.querySelectorAll('.rc-lang-switch');
+      if (!links.length || !d) return;
+
+      var root = d.root;                 // e.g. '/tanzicong/'
+      var fullPath = location.pathname;  // e.g. '/tanzicong/zh-CN/cv/'
+
+      // Strip the site root to get the site-relative path.
+      var rel = fullPath;
+      if (root && root !== '/' && fullPath.indexOf(root) === 0) {
+        rel = fullPath.slice(root.length);
+      }
+      if (!rel) rel = '/';
+      else if (rel.charAt(0) !== '/') rel = '/' + rel;
+
+      // Current language.
+      var isZh = /^\/zh-CN(\/|$)/.test(rel);
+
+      // Site-relative URL of the counterpart page (no root, no index.html).
+      var relTarget;
+      if (rel === '/' ) relTarget = '/zh-CN/';
+      else if (rel === '/zh-CN/' ) relTarget = '/';
+      else if (isZh) relTarget = rel.replace(/^\/zh-CN\//, '/');
+      else relTarget = '/zh-CN' + rel;
+
+      // The counterpart's Hexo page path ('cv/index.html', 'zh-CN/cv/index.html', …).
+      var targetPagePath;
+      if (relTarget === '/' ) targetPagePath = 'index.html';
+      else if (relTarget === '/zh-CN/' ) targetPagePath = 'zh-CN/index.html';
+      else targetPagePath = relTarget.replace(/^\/+|\/+$/g, '') + '/index.html';
+
+      var hasTarget = d.pages.indexOf(targetPagePath) > -1;
+
+      // Final href (with root). Fall back to the counterpart-language homepage.
+      var href;
+      if (hasTarget) {
+        href = (root || '/') + relTarget.replace(/^\/+/, '');
+      } else {
+        href = isZh ? (root || '/') : (root || '/') + 'zh-CN/';
+      }
+
+      var targetLang = isZh ? 'en' : 'zh-CN';
+      Array.prototype.forEach.call(links, function (a) {
+        if (a.getAttribute('data-rc-lang') === targetLang) {
+          a.setAttribute('href', href);
+        }
       });
     }
 
@@ -2994,6 +3079,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       __rcInitMotion();
       __rcSetActive();
+      __rcUpdateLangSwitch();
       __rcInitToc();
       __rcInitViews();
       __rcInitTagCloud(); // before filters, so a ?tag= pre-selection is seen by the filter
@@ -3026,6 +3112,7 @@
           mTimer = window.setTimeout(function () {
             __rcInitMotion();
             __rcSetActive();
+            __rcUpdateLangSwitch();
             __rcInitToc();
             __rcInitViews();
             __rcInitTagCloud();
@@ -3204,6 +3291,7 @@
         swup.on('page:view', function () {
           // history is updated by now, so location.pathname is correct
           window.__rcSetActive && window.__rcSetActive();
+          window.__rcUpdateLangSwitch && window.__rcUpdateLangSwitch();
         });
       } catch (e) { /* if Swup fails, normal navigation still works */ }
     });

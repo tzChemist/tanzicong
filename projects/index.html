@@ -192,7 +192,21 @@
         </div>
         <div class="flex-none flex items-center gap-2">
           
-<a href="/tanzicong/zh-CN/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文">
+<script>
+// Global data for the client-side language re-linker. The navbar / sidebar are
+// NOT replaced by Swup (Swup only swaps #swup), so the switch button would keep
+// a stale href after navigating via the sidebar menu. Exposing the site root +
+// the full page list lets JS recompute the correct target URL for the CURRENT
+// location on every navigation. Guarded so the two partial instances (mobile +
+// desktop) don't clobber each other.
+if (!window.__rcLangSwitch) {
+  window.__rcLangSwitch = {
+    root: '/tanzicong/',
+    pages: ["cv/index.html","talks/index.html","projects/index.html","notes/index.html","publications/index.html","zh-CN/index.html","zh-CN/cv/index.html","zh-CN/publications/index.html"]
+  };
+}
+</script>
+<a href="/tanzicong/zh-CN/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文" data-rc-lang="zh-CN">
   <i class="fas fa-globe"></i>中文
 </a>
 
@@ -554,198 +568,1020 @@
   <!-- Content area for Desktop (whole-body partial swapping via Swup) -->
   <div id="swup" class="lg:ml-80 pt-20 px-4 lg:px-10 pb-8 flex-1 min-h-0">
     
-<div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-12">
-<article class="mx-auto max-w-3xl rc-reveal w-full">
 
-  <!-- Post Header -->
-  <header class="mb-12">
-    <div class="flex flex-wrap items-center gap-3 text-sm rc-muted mb-5">
-      
-      <span class="flex items-center gap-2">
-        <i class="fa-regular fa-calendar"></i>
-        <time datetime="2026-10-17T17:51:43.000Z">2026-10-18</time>
-      </span>
-      <span class="flex items-center gap-2">
-        <i class="fa-solid fa-clock"></i>
-        <span>0 min read</span>
-      </span>
+<!-- ============ Research Program（面 → 点：命题层 → 三条路径 → 收敛 → 内核） ============ -->
+
+<section class="rc-section rc-reveal">
+  <div class="rc-section-head">
+    <span class="rc-kicker">Focus Areas</span>
+    <h2 class="rc-section-title text-base-content">Research Interests</h2>
+  </div>
+
+  <!-- 命题层（面） -->
+  <div class="rc-ri-panel">
+    <div class="rc-ri-panel-tag">
+      <span class="rc-ri-glyph">Surface</span>
+      <span class="rc-ri-caption">The Proposition</span>
     </div>
+    <h3 class="rc-ri-title">Interfacial Processes</h3>
+    <p class="rc-ri-body">The fate of environmental pollutants, the activation and conversion of carbon resources, and the response of nanomaterials to living systems — three faces of one and the same question</p>
+    <p class="rc-ri-question">Which atomic site on the interface is actually driving the reaction?</p>
+  </div>
 
-    <h1 class="text-3xl md:text-4xl font-bold rc-serif leading-tight tracking-tight">projects</h1>
-
+  <!-- 面 → 三条路径（向下分支为三支） -->
+  <div class="rc-ri-drop" aria-hidden="true">
     
+      <span class="rc-ri-drop-stem">
+        <svg class="rc-ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    
+      <span class="rc-ri-drop-stem">
+        <svg class="rc-ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    
+      <span class="rc-ri-drop-stem">
+        <svg class="rc-ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    
+  </div>
+
+  <!-- 三条路径（三个界面） -->
+  <div class="rc-ri-paths">
+    
+      <div class="rc-ri-path">
+        <div class="rc-ri-path-head">
+          <span class="rc-ri-path-icon"><i class="fa-solid fa-droplet"></i></span>
+          <div class="min-w-0">
+            <h4 class="rc-ri-path-name">Solid–Liquid Interface</h4>
+            <span class="rc-ri-path-sub">Mineral–Water</span>
+          </div>
+        </div>
+        <ul class="rc-ri-path-items">
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">Heavy-metal adsorption / coordination</span>
+            </li>
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">Isotope fractionation (MIF / nuclear volume)</span>
+            </li>
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">Geochemical tracing</span>
+            </li>
+          
+        </ul>
+      </div>
+    
+      <div class="rc-ri-path">
+        <div class="rc-ri-path-head">
+          <span class="rc-ri-path-icon"><i class="fa-solid fa-wind"></i></span>
+          <div class="min-w-0">
+            <h4 class="rc-ri-path-name">Solid–Gas Interface</h4>
+            <span class="rc-ri-path-sub">Heterogeneous Catalysis</span>
+          </div>
+        </div>
+        <ul class="rc-ri-path-items">
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">CO₂ capture &amp; activation</span>
+            </li>
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">DMC synthesis</span>
+            </li>
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">Photocatalyst surface chemistry</span>
+            </li>
+          
+        </ul>
+      </div>
+    
+      <div class="rc-ri-path">
+        <div class="rc-ri-path-head">
+          <span class="rc-ri-path-icon"><i class="fa-solid fa-dna"></i></span>
+          <div class="min-w-0">
+            <h4 class="rc-ri-path-name">Nano–Bio Interface</h4>
+            
+          </div>
+        </div>
+        <ul class="rc-ri-path-items">
+          
+            
+            <li class="rc-ri-item rc-ri-item-star">
+              <span class="rc-ri-star" aria-hidden="true">★</span>
+              <span class="rc-ri-item-text">CeO₂–plant (NSFC, ongoing)</span>
+            </li>
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">Nanozymes · oxygen vacancies</span>
+            </li>
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">Ce³⁺/Ce⁴⁺ redox cycling</span>
+            </li>
+          
+            
+            <li class="rc-ri-item">
+              
+              <span class="rc-ri-item-text">Health effects · sensing</span>
+            </li>
+          
+        </ul>
+      </div>
+    
+  </div>
+
+  <!-- 收敛 -->
+  <div class="rc-ri-merge" aria-hidden="true">
+    <svg class="rc-ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </div>
+  <p class="rc-ri-convergence">Three pathways converging on one chemical language</p>
+
+  <!-- 内核（点） -->
+  <div class="rc-ri-panel rc-ri-panel-core">
+    <div class="rc-ri-panel-tag">
+      <span class="rc-ri-glyph">Site</span>
+      <span class="rc-ri-caption">The Core</span>
+    </div>
+    <h3 class="rc-ri-title">Atomic-Level Chemical Resolution of Active Sites</h3>
+    <div class="rc-ri-methods">
+      
+        <div class="rc-ri-method">
+          <span class="rc-ri-method-idx">01</span>
+          <div class="min-w-0">
+            <h4 class="rc-ri-method-name">³¹P probe-molecule solid-state NMR</h4>
+            <span class="rc-ri-method-note">facet-resolved · acid–base site quantification</span>
+          </div>
+        </div>
+      
+        <div class="rc-ri-method">
+          <span class="rc-ri-method-idx">02</span>
+          <div class="min-w-0">
+            <h4 class="rc-ri-method-name">Atomically resolved STEM-EELS + simulation</h4>
+            <span class="rc-ri-method-note">single-layer atomic coordination / electronic structure</span>
+          </div>
+        </div>
+      
+        <div class="rc-ri-method">
+          <span class="rc-ri-method-idx">03</span>
+          <div class="min-w-0">
+            <h4 class="rc-ri-method-name">Relativistic first-principles calculations</h4>
+            <span class="rc-ri-method-note">four-component / plane-wave pseudopotentials</span>
+          </div>
+        </div>
+      
+    </div>
+    <p class="rc-ri-conclusion">Pinpointing an interfacial process down to the exact atomic site</p>
+  </div>
+</section>
+
+
+<div class="rc-section">
+  <header class="rc-section-head">
+    <span class="rc-kicker">Research Projects</span>
+    <h1 class="rc-section-title">Ongoing &amp; past work</h1>
+    <p class="rc-muted mt-3 max-w-2xl">A selection of research initiatives and software. Filter by status, category or keyword.</p>
   </header>
 
-  <!-- Post Content -->
-  <div class="post-content" id="processed-content">
-    <link rel="stylesheet" href="/tanzicong/css/post.css">
+  <!-- Filters -->
+  <div class="rc-filter" data-filter>
+    <div class="rc-filter-field">
+      <label class="rc-filter-label" for="statusFilter">Status</label>
+      <select class="rc-select w-full" id="statusFilter" data-filter-type="status">
+        <option value="">All Statuses</option>
+        
+          <option value="current">current</option>
+        
+          <option value="completed">completed</option>
+        
+      </select>
+    </div>
+
+    <div class="rc-filter-field">
+      <label class="rc-filter-label" for="categoryFilter">Category</label>
+      <select class="rc-select w-full" id="categoryFilter" data-filter-type="category">
+        <option value="">All Categories</option>
+        
+          <option value="Artificial Intelligence">Artificial Intelligence</option>
+        
+          <option value="Bioinformatics">Bioinformatics</option>
+        
+          <option value="Genomics">Genomics</option>
+        
+          <option value="Structural Biology">Structural Biology</option>
+        
+          <option value="Medical AI">Medical AI</option>
+        
+          <option value="Climate Science">Climate Science</option>
+        
+          <option value="Educational Technology">Educational Technology</option>
+        
+          <option value="Autonomous Systems">Autonomous Systems</option>
+        
+      </select>
+    </div>
+
+    <div class="rc-filter-field grow">
+      <label class="rc-filter-label" for="searchInput">Search</label>
+      <input type="text" placeholder="Search projects..." class="rc-input w-full" id="searchInput" data-filter-type="search" />
+    </div>
+
+    
+    <div class="ml-auto">
+      
+<div class="rc-view-toggle" data-view-toggle role="group" aria-label="Detail / Compact">
+  <button type="button" data-view-mode="detail" class="is-active" aria-pressed="true">
+    <i class="fa-solid fa-list-ul"></i> Detail
+  </button>
+  <button type="button" data-view-mode="compact" aria-pressed="false">
+    <i class="fa-solid fa-table-cells"></i> Compact
+  </button>
+</div>
+
+    </div>
     
   </div>
 
-  <!-- Tags Footer -->
-  
+  <!-- Projects timeline -->
+  <div class="rc-timeline" id="projectsList" data-filter-list data-view data-view-key="rc-view-projects">
+    
+      <div class="rc-timeline-item rc-reveal project-item" data-filter-item
+           data-status="current"
+           data-category="Artificial Intelligence"
+           data-tags="AI,Knowledge Graph,Literature Mining,Research Tools"
+           data-title="ai-powered research assistant"
+           data-text="an ai system designed to help researchers conduct efficient literature reviews and synthesize scientific knowledge.">
+        <span class="rc-timeline-dot"></span>
+        <article class="rc-card rc-focus">
+          <div class="rc-card-body">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="text-xl font-semibold leading-tight flex-1">AI-Powered Research Assistant</h2>
+              
+                
+                <span class="rc-badge rc-badge--current shrink-0 mt-1"><i class="fa-solid fa-circle-bolt"></i> current</span>
+              
+            </div>
 
-  <!-- Share + Navigation -->
-  <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <div class="rc-card rc-card-body">
-      
-<div class="card-body p-6">
-  <h3 class="card-title mb-4">Post Actions</h3>
-  <div class="flex flex-wrap gap-3" id="share-buttons-container">
-    <!-- 分享按钮将由 JS 动态生成 -->
-  </div>
-</div>
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm rc-muted mb-4 rc-meta-line">
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-calendar-days w-4 h-4"></i>
+                  2023 - Present
+                </span>
+              
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group w-4 h-4"></i>
+                  Artificial Intelligence
+                </span>
+              
+            </div>
 
-<script>
-function copyToClipboard() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    alert('Link copied!');
-  });
-}
+            
+              <div class="flex flex-wrap gap-2 mb-4 rc-detail-only">
+                
+                  <span class="rc-tag">AI</span>
+                
+                  <span class="rc-tag">Knowledge Graph</span>
+                
+                  <span class="rc-tag">Literature Mining</span>
+                
+                  <span class="rc-tag">Research Tools</span>
+                
+              </div>
+            
 
-// 动态生成分享按钮
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('share-buttons-container');
-  const pageUrl = encodeURIComponent(window.location.href);
-  const pageTitle = encodeURIComponent(document.title);
+            
+              <p class="text-sm leading-relaxed text-base-content/80 mb-4 rc-detail-only">An AI system designed to help researchers conduct efficient literature reviews and synthesize scientific knowledge.</p>
+            
 
-  const platforms = {"twitter":true,"linkedin":true,"facebook":true,"reddit":false,"weibo":true,"qq":true,"wechat":true};
+            
+              <div class="mb-4 text-sm rc-detail-only">
+                <span class="font-semibold text-base-content/80">Collaborators:</span>
+                
+                  <a href="https://university.edu/alice-smith" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. Alice Smith (PI)
+                  </a>
+                
+                  <a href="https://university.edu/john-doe" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. John Doe (Co-PI)
+                  </a>
+                
+                  <a href="https://university.edu/emily-zhang" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Emily Zhang (PhD Student)
+                  </a>
+                
+              </div>
+            
 
-  // 按钮生成函数
-  const createButton = (href, classes, iconClass, text, isButton = false, clickHandler = null) => {
-    let el;
-    if (isButton) {
-      el = document.createElement('button');
-      el.type = 'button';
-      el.className = classes;
-      if (clickHandler) el.addEventListener('click', clickHandler);
-    } else {
-      el = document.createElement('a');
-      el.href = href;
-      el.target = "_blank";
-      el.rel = "noopener";
-      el.className = classes;
-    }
-    el.innerHTML = `<i class="${iconClass}"></i> ${text}`;
-    container.appendChild(el);
-  };
+            
+              <div class="mb-4 space-y-1.5 rc-detail-only">
+                
+                  <a href="https://www.nature.com/articles/ai-research-synthesis" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-sm rc-btn-link no-underline">
+                    <i class="fa-solid fa-newspaper mt-0.5"></i>
+                    <span>Smith et al. (2024), AI-Driven Research Synthesis, Nature</span>
+                  </a>
+                
+              </div>
+            
 
-  // 国际平台
-  if (platforms.twitter) {
-    createButton(
-      `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`,
-      'btn btn-sm btn-outline',
-      'fa-brands fa-twitter',
-      'X (Twitter)'
-    );
-  }
+            
+              <div class="flex flex-wrap gap-2 mt-4 rc-detail-only">
+                
+                  <a href="https://research-assistant.ai" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-solid fa-link"></i> Link
+                  </a>
+                
+                
+                  <a href="https://github.com/username/ai-research-assistant" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-brands fa-github"></i> GitHub
+                  </a>
+                
+              </div>
+            
+          
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
 
-  if (platforms.linkedin) {
-    createButton(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`,
-      'btn btn-sm btn-outline',
-      'fa-brands fa-linkedin',
-      'LinkedIn'
-    );
-  }
-
-  if (platforms.facebook) {
-    createButton(
-      `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-      'btn btn-sm btn-outline',
-      'fa-brands fa-facebook',
-      'Facebook'
-    );
-  }
-
-  if (platforms.reddit) {
-    createButton(
-      `https://www.reddit.com/submit?url=${pageUrl}&title=${pageTitle}`,
-      'btn btn-sm btn-outline',
-      'fa-brands fa-reddit',
-      'Reddit'
-    );
-  }
-
-  // 国内平台
-  if (platforms.weibo) {
-    createButton(
-      `https://service.weibo.com/share/share.php?title=${pageTitle}&url=${pageUrl}`,
-      'btn btn-sm btn-outline',
-      'fa-brands fa-weibo',
-      'Weibo'
-    );
-  }
-
-  if (platforms.qq) {
-    createButton(
-      `http://connect.qq.com/widget/shareqq/index.html?title=${pageTitle}&url=${pageUrl}`,
-      'btn btn-sm btn-outline',
-      'fa-brands fa-qq',
-      'QQ'
-    );
-  }
-
-  if (platforms.wechat) {
-    createButton(
-      '#',
-      'btn btn-sm btn-outline',
-      'fa-brands fa-weixin',
-      'WeChat',
-      true,
-      () => {
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${pageUrl}`;
-        const qrWindow = window.open('', 'WeChat Share', 'width=200,height=200');
-        qrWindow.document.write(`<img src="${qrUrl}" alt="Scan QR to share on WeChat">`);
-      }
-    );
-  }
-
-  // 复制链接按钮
-  createButton(
-    '#',
-    'btn btn-sm btn-outline',
-    'fa-solid fa-copy',
-    'Copy Link',
-    true,
-    copyToClipboard
-  );
-});
-</script>
-
-
-    </div>
-
-    <div class="rc-card rc-card-body">
-      <h3 class="text-base font-semibold rc-serif mb-4">Navigation</h3>
-      <div class="space-y-3">
-        <a href="/tanzicong/notes/" class="rc-btn rc-btn-outline w-full justify-start">
-          <i class="fa-solid fa-folder-tree"></i>
-          All Notes
-        </a>
-        
+          </div>
+        </article>
       </div>
-    </div>
+    
+      <div class="rc-timeline-item rc-reveal project-item" data-filter-item
+           data-status="completed"
+           data-category="Bioinformatics"
+           data-tags="Bioinformatics,Data Integration,Visualization"
+           data-title="bioinformatics data platform"
+           data-text="a platform for integration and analysis of multi-omics data with user-friendly visualization.">
+        <span class="rc-timeline-dot"></span>
+        <article class="rc-card rc-focus">
+          <div class="rc-card-body">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="text-xl font-semibold leading-tight flex-1">Bioinformatics Data Platform</h2>
+              
+                
+                <span class="rc-badge rc-badge--completed shrink-0 mt-1"><i class="fa-solid fa-circle-check"></i> completed</span>
+              
+            </div>
+
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm rc-muted mb-4 rc-meta-line">
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-calendar-days w-4 h-4"></i>
+                  2021 - 2023
+                </span>
+              
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group w-4 h-4"></i>
+                  Bioinformatics
+                </span>
+              
+            </div>
+
+            
+              <div class="flex flex-wrap gap-2 mb-4 rc-detail-only">
+                
+                  <span class="rc-tag">Bioinformatics</span>
+                
+                  <span class="rc-tag">Data Integration</span>
+                
+                  <span class="rc-tag">Visualization</span>
+                
+              </div>
+            
+
+            
+              <p class="text-sm leading-relaxed text-base-content/80 mb-4 rc-detail-only">A platform for integration and analysis of multi-omics data with user-friendly visualization.</p>
+            
+
+            
+              <div class="mb-4 text-sm rc-detail-only">
+                <span class="font-semibold text-base-content/80">Collaborators:</span>
+                
+                  <a href="https://university.edu/linda-wang" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. Linda Wang (PI)
+                  </a>
+                
+                  <a href="https://university.edu/mark-lee" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Mark Lee (Researcher)
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="mb-4 space-y-1.5 rc-detail-only">
+                
+                  <a href="https://bioinformaticsjournal.org/articles/integrative-omics" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-sm rc-btn-link no-underline">
+                    <i class="fa-solid fa-newspaper mt-0.5"></i>
+                    <span>Wang et al. (2023), Integrative Omics Analysis, Bioinformatics Journal</span>
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="flex flex-wrap gap-2 mt-4 rc-detail-only">
+                
+                  <a href="https://bioinfo-platform.org" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-solid fa-link"></i> Link
+                  </a>
+                
+                
+              </div>
+            
+          
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
+
+          </div>
+        </article>
+      </div>
+    
+      <div class="rc-timeline-item rc-reveal project-item" data-filter-item
+           data-status="current"
+           data-category="Genomics"
+           data-tags="Genomics,NGS,Pipeline"
+           data-title="next-gen sequencing analysis pipeline"
+           data-text="an automated pipeline for ngs data processing and variant calling optimized for large datasets.">
+        <span class="rc-timeline-dot"></span>
+        <article class="rc-card rc-focus">
+          <div class="rc-card-body">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="text-xl font-semibold leading-tight flex-1">Next-Gen Sequencing Analysis Pipeline</h2>
+              
+                
+                <span class="rc-badge rc-badge--current shrink-0 mt-1"><i class="fa-solid fa-circle-bolt"></i> current</span>
+              
+            </div>
+
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm rc-muted mb-4 rc-meta-line">
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-calendar-days w-4 h-4"></i>
+                  2022 - Present
+                </span>
+              
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group w-4 h-4"></i>
+                  Genomics
+                </span>
+              
+            </div>
+
+            
+              <div class="flex flex-wrap gap-2 mb-4 rc-detail-only">
+                
+                  <span class="rc-tag">Genomics</span>
+                
+                  <span class="rc-tag">NGS</span>
+                
+                  <span class="rc-tag">Pipeline</span>
+                
+              </div>
+            
+
+            
+              <p class="text-sm leading-relaxed text-base-content/80 mb-4 rc-detail-only">An automated pipeline for NGS data processing and variant calling optimized for large datasets.</p>
+            
+
+            
+              <div class="mb-4 text-sm rc-detail-only">
+                <span class="font-semibold text-base-content/80">Collaborators:</span>
+                
+                  <a href="https://university.edu/sarah-chen" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. Sarah Chen (Lead Scientist)
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="mb-4 space-y-1.5 rc-detail-only">
+                
+                  <a href="https://genomeresearch.org/articles/efficient-ngs" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-sm rc-btn-link no-underline">
+                    <i class="fa-solid fa-newspaper mt-0.5"></i>
+                    <span>Chen et al. (2024), Efficient NGS Data Analysis, Genome Research</span>
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="flex flex-wrap gap-2 mt-4 rc-detail-only">
+                
+                
+                  <a href="https://github.com/username/ngs-pipeline" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-brands fa-github"></i> GitHub
+                  </a>
+                
+              </div>
+            
+          
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
+
+          </div>
+        </article>
+      </div>
+    
+      <div class="rc-timeline-item rc-reveal project-item" data-filter-item
+           data-status="completed"
+           data-category="Structural Biology"
+           data-tags="Protein,Deep Learning,Structural Biology"
+           data-title="protein structure prediction tool"
+           data-text="a computational tool for predicting protein 3d structures using deep learning methods.">
+        <span class="rc-timeline-dot"></span>
+        <article class="rc-card rc-focus">
+          <div class="rc-card-body">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="text-xl font-semibold leading-tight flex-1">Protein Structure Prediction Tool</h2>
+              
+                
+                <span class="rc-badge rc-badge--completed shrink-0 mt-1"><i class="fa-solid fa-circle-check"></i> completed</span>
+              
+            </div>
+
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm rc-muted mb-4 rc-meta-line">
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-calendar-days w-4 h-4"></i>
+                  2020 - 2022
+                </span>
+              
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group w-4 h-4"></i>
+                  Structural Biology
+                </span>
+              
+            </div>
+
+            
+              <div class="flex flex-wrap gap-2 mb-4 rc-detail-only">
+                
+                  <span class="rc-tag">Protein</span>
+                
+                  <span class="rc-tag">Deep Learning</span>
+                
+                  <span class="rc-tag">Structural Biology</span>
+                
+              </div>
+            
+
+            
+              <p class="text-sm leading-relaxed text-base-content/80 mb-4 rc-detail-only">A computational tool for predicting protein 3D structures using deep learning methods.</p>
+            
+
+            
+              <div class="mb-4 text-sm rc-detail-only">
+                <span class="font-semibold text-base-content/80">Collaborators:</span>
+                
+                  <a href="https://university.edu/kevin-brown" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. Kevin Brown (PI)
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="mb-4 space-y-1.5 rc-detail-only">
+                
+                  <a href="https://jmb.org/articles/deep-learning-protein" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-sm rc-btn-link no-underline">
+                    <i class="fa-solid fa-newspaper mt-0.5"></i>
+                    <span>Brown et al. (2022), Deep Learning for Protein Folding, Journal of Molecular Biology</span>
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="flex flex-wrap gap-2 mt-4 rc-detail-only">
+                
+                  <a href="https://proteinpredictor.org" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-solid fa-link"></i> Link
+                  </a>
+                
+                
+              </div>
+            
+          
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
+
+          </div>
+        </article>
+      </div>
+    
+      <div class="rc-timeline-item rc-reveal project-item" data-filter-item
+           data-status="current"
+           data-category="Medical AI"
+           data-tags="Medical Imaging,Multimodal AI,Healthcare,Computer Vision"
+           data-title="multimodal ai for medical imaging"
+           data-text="developing ai systems that can analyze medical images alongside patient data for improved diagnosis accuracy.">
+        <span class="rc-timeline-dot"></span>
+        <article class="rc-card rc-focus">
+          <div class="rc-card-body">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="text-xl font-semibold leading-tight flex-1">Multimodal AI for Medical Imaging</h2>
+              
+                
+                <span class="rc-badge rc-badge--current shrink-0 mt-1"><i class="fa-solid fa-circle-bolt"></i> current</span>
+              
+            </div>
+
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm rc-muted mb-4 rc-meta-line">
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-calendar-days w-4 h-4"></i>
+                  2024 - Present
+                </span>
+              
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group w-4 h-4"></i>
+                  Medical AI
+                </span>
+              
+            </div>
+
+            
+              <div class="flex flex-wrap gap-2 mb-4 rc-detail-only">
+                
+                  <span class="rc-tag">Medical Imaging</span>
+                
+                  <span class="rc-tag">Multimodal AI</span>
+                
+                  <span class="rc-tag">Healthcare</span>
+                
+                  <span class="rc-tag">Computer Vision</span>
+                
+              </div>
+            
+
+            
+              <p class="text-sm leading-relaxed text-base-content/80 mb-4 rc-detail-only">Developing AI systems that can analyze medical images alongside patient data for improved diagnosis accuracy.</p>
+            
+
+            
+              <div class="mb-4 text-sm rc-detail-only">
+                <span class="font-semibold text-base-content/80">Collaborators:</span>
+                
+                  <a href="https://hospital.edu/maria-rodriguez" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. Maria Rodriguez (Clinical Lead)
+                  </a>
+                
+                  <a href="https://university.edu/james-wilson" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. James Wilson (AI Researcher)
+                  </a>
+                
+                  <a href="https://university.edu/lisa-park" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Lisa Park (PhD Student)
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="mb-4 space-y-1.5 rc-detail-only">
+                
+                  <a href="https://nature.com/articles/multimodal-medical-ai" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-sm rc-btn-link no-underline">
+                    <i class="fa-solid fa-newspaper mt-0.5"></i>
+                    <span>Rodriguez et al. (2024), Multimodal Medical AI, Nature Medicine</span>
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="flex flex-wrap gap-2 mt-4 rc-detail-only">
+                
+                  <a href="https://medai.stanford.edu" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-solid fa-link"></i> Link
+                  </a>
+                
+                
+                  <a href="https://github.com/stanford-medai/multimodal-diagnosis" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-brands fa-github"></i> GitHub
+                  </a>
+                
+              </div>
+            
+          
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
+
+          </div>
+        </article>
+      </div>
+    
+      <div class="rc-timeline-item rc-reveal project-item" data-filter-item
+           data-status="current"
+           data-category="Climate Science"
+           data-tags="Climate Science,Environmental AI,Predictive Modeling,Sustainability"
+           data-title="climate change prediction models"
+           data-text="using machine learning to improve climate change predictions and understand environmental impacts.">
+        <span class="rc-timeline-dot"></span>
+        <article class="rc-card rc-focus">
+          <div class="rc-card-body">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="text-xl font-semibold leading-tight flex-1">Climate Change Prediction Models</h2>
+              
+                
+                <span class="rc-badge rc-badge--current shrink-0 mt-1"><i class="fa-solid fa-circle-bolt"></i> current</span>
+              
+            </div>
+
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm rc-muted mb-4 rc-meta-line">
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-calendar-days w-4 h-4"></i>
+                  2023 - Present
+                </span>
+              
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group w-4 h-4"></i>
+                  Climate Science
+                </span>
+              
+            </div>
+
+            
+              <div class="flex flex-wrap gap-2 mb-4 rc-detail-only">
+                
+                  <span class="rc-tag">Climate Science</span>
+                
+                  <span class="rc-tag">Environmental AI</span>
+                
+                  <span class="rc-tag">Predictive Modeling</span>
+                
+                  <span class="rc-tag">Sustainability</span>
+                
+              </div>
+            
+
+            
+              <p class="text-sm leading-relaxed text-base-content/80 mb-4 rc-detail-only">Using machine learning to improve climate change predictions and understand environmental impacts.</p>
+            
+
+            
+              <div class="mb-4 text-sm rc-detail-only">
+                <span class="font-semibold text-base-content/80">Collaborators:</span>
+                
+                  <a href="https://climatelab.edu/robert-green" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. Robert Green (Climate Scientist)
+                  </a>
+                
+                  <a href="https://university.edu/anna-thompson" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. Anna Thompson (Data Scientist)
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="mb-4 space-y-1.5 rc-detail-only">
+                
+                  <a href="https://nature.com/articles/ai-climate-prediction" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-sm rc-btn-link no-underline">
+                    <i class="fa-solid fa-newspaper mt-0.5"></i>
+                    <span>Green et al. (2024), AI for Climate Prediction, Nature Climate Change</span>
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="flex flex-wrap gap-2 mt-4 rc-detail-only">
+                
+                  <a href="https://climate-ai.org" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-solid fa-link"></i> Link
+                  </a>
+                
+                
+              </div>
+            
+          
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
+
+          </div>
+        </article>
+      </div>
+    
+      <div class="rc-timeline-item rc-reveal project-item" data-filter-item
+           data-status="completed"
+           data-category="Educational Technology"
+           data-tags="EdTech,Personalized Learning,AI in Education,Learning Analytics"
+           data-title="educational ai platform"
+           data-text="an adaptive learning platform that personalizes educational content based on student performance and learning styles.">
+        <span class="rc-timeline-dot"></span>
+        <article class="rc-card rc-focus">
+          <div class="rc-card-body">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="text-xl font-semibold leading-tight flex-1">Educational AI Platform</h2>
+              
+                
+                <span class="rc-badge rc-badge--completed shrink-0 mt-1"><i class="fa-solid fa-circle-check"></i> completed</span>
+              
+            </div>
+
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm rc-muted mb-4 rc-meta-line">
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-calendar-days w-4 h-4"></i>
+                  2021 - 2023
+                </span>
+              
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group w-4 h-4"></i>
+                  Educational Technology
+                </span>
+              
+            </div>
+
+            
+              <div class="flex flex-wrap gap-2 mb-4 rc-detail-only">
+                
+                  <span class="rc-tag">EdTech</span>
+                
+                  <span class="rc-tag">Personalized Learning</span>
+                
+                  <span class="rc-tag">AI in Education</span>
+                
+                  <span class="rc-tag">Learning Analytics</span>
+                
+              </div>
+            
+
+            
+              <p class="text-sm leading-relaxed text-base-content/80 mb-4 rc-detail-only">An adaptive learning platform that personalizes educational content based on student performance and learning styles.</p>
+            
+
+            
+              <div class="mb-4 text-sm rc-detail-only">
+                <span class="font-semibold text-base-content/80">Collaborators:</span>
+                
+                  <a href="https://education.edu/patricia-lee" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. Patricia Lee (Education Researcher)
+                  </a>
+                
+                  <a href="https://linkedin.com/in/michael-chang" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Michael Chang (Software Engineer)
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="mb-4 space-y-1.5 rc-detail-only">
+                
+                  <a href="https://sciencedirect.com/adaptive-learning-systems" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-sm rc-btn-link no-underline">
+                    <i class="fa-solid fa-newspaper mt-0.5"></i>
+                    <span>Lee et al. (2023), Adaptive Learning Systems, Computers &amp; Education</span>
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="flex flex-wrap gap-2 mt-4 rc-detail-only">
+                
+                  <a href="https://eduai-platform.com" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-solid fa-link"></i> Link
+                  </a>
+                
+                
+                  <a href="https://github.com/eduai/adaptive-platform" target="_blank" rel="noopener noreferrer" class="rc-btn rc-btn-outline rc-btn-sm">
+                    <i class="fa-brands fa-github"></i> GitHub
+                  </a>
+                
+              </div>
+            
+          
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
+
+          </div>
+        </article>
+      </div>
+    
+      <div class="rc-timeline-item rc-reveal project-item" data-filter-item
+           data-status="completed"
+           data-category="Autonomous Systems"
+           data-tags="Autonomous Vehicles,Safety Systems,Computer Vision,Edge Cases"
+           data-title="autonomous vehicle safety system"
+           data-text="developing safety-critical ai systems for autonomous vehicles with focus on edge case detection and handling.">
+        <span class="rc-timeline-dot"></span>
+        <article class="rc-card rc-focus">
+          <div class="rc-card-body">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="text-xl font-semibold leading-tight flex-1">Autonomous Vehicle Safety System</h2>
+              
+                
+                <span class="rc-badge rc-badge--completed shrink-0 mt-1"><i class="fa-solid fa-circle-check"></i> completed</span>
+              
+            </div>
+
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm rc-muted mb-4 rc-meta-line">
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-calendar-days w-4 h-4"></i>
+                  2020 - 2022
+                </span>
+              
+              
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-layer-group w-4 h-4"></i>
+                  Autonomous Systems
+                </span>
+              
+            </div>
+
+            
+              <div class="flex flex-wrap gap-2 mb-4 rc-detail-only">
+                
+                  <span class="rc-tag">Autonomous Vehicles</span>
+                
+                  <span class="rc-tag">Safety Systems</span>
+                
+                  <span class="rc-tag">Computer Vision</span>
+                
+                  <span class="rc-tag">Edge Cases</span>
+                
+              </div>
+            
+
+            
+              <p class="text-sm leading-relaxed text-base-content/80 mb-4 rc-detail-only">Developing safety-critical AI systems for autonomous vehicles with focus on edge case detection and handling.</p>
+            
+
+            
+              <div class="mb-4 text-sm rc-detail-only">
+                <span class="font-semibold text-base-content/80">Collaborators:</span>
+                
+                  <a href="https://robotics.edu/david-kim" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Dr. David Kim (Robotics Expert)
+                  </a>
+                
+                  <a href="#" target="_blank" rel="noopener noreferrer" class="rc-tag no-underline">
+                    Tesla Research Team (Industry Partner)
+                  </a>
+                
+              </div>
+            
+
+            
+              <div class="mb-4 space-y-1.5 rc-detail-only">
+                
+                  <a href="https://ieee.org/safety-autonomous-systems" target="_blank" rel="noopener noreferrer" class="flex items-start gap-2 text-sm rc-btn-link no-underline">
+                    <i class="fa-solid fa-newspaper mt-0.5"></i>
+                    <span>Kim et al. (2022), Safety in Autonomous Systems, IEEE Transactions on Robotics</span>
+                  </a>
+                
+              </div>
+            
+
+            
+          
+<button type="button" class="rc-expand" aria-label="Toggle details" aria-expanded="false">
+  <i class="fa-solid fa-chevron-down"></i>
+</button>
+
+          </div>
+        </article>
+      </div>
+    
   </div>
-
-  <!-- Previous/Next Navigation -->
-  
-
-</article>
-
-
 </div>
-
-<!-- 传递主题配置到前端 -->
-<script>
-window.themeConfig = {
-  code_collapse: {
-    enabled: true,
-    lines: 5
-  }
-};
-</script>
-
 
   </div>
 
@@ -780,7 +1616,21 @@ window.themeConfig = {
     </div>
     <div class="flex-none flex items-center gap-2">
       
-<a href="/tanzicong/zh-CN/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文">
+<script>
+// Global data for the client-side language re-linker. The navbar / sidebar are
+// NOT replaced by Swup (Swup only swaps #swup), so the switch button would keep
+// a stale href after navigating via the sidebar menu. Exposing the site root +
+// the full page list lets JS recompute the correct target URL for the CURRENT
+// location on every navigation. Guarded so the two partial instances (mobile +
+// desktop) don't clobber each other.
+if (!window.__rcLangSwitch) {
+  window.__rcLangSwitch = {
+    root: '/tanzicong/',
+    pages: ["cv/index.html","talks/index.html","projects/index.html","notes/index.html","publications/index.html","zh-CN/index.html","zh-CN/cv/index.html","zh-CN/publications/index.html"]
+  };
+}
+</script>
+<a href="/tanzicong/zh-CN/" data-no-swup class="rc-btn rc-btn-outline rc-btn-sm rc-lang-switch" style="background:var(--rc-bg);white-space:nowrap;" title="切换到中文" aria-label="切换到中文" data-rc-lang="zh-CN">
   <i class="fas fa-globe"></i>中文
 </a>
 
@@ -1199,6 +2049,63 @@ window.themeConfig = {
       document.querySelectorAll('.rc-sidebar-link').forEach(function (link) {
         var href = (link.getAttribute('href') || '').replace(/\/(index)?$/, '') || '/';
         link.classList.toggle('is-active', href === path);
+      });
+    }
+
+    // Recompute the language-switch button's href for the CURRENT location.
+    // The navbar/sidebar survive a Swup navigation (only #swup is swapped), so a
+    // button rendered on the homepage would otherwise keep a stale "homepage"
+    // target even after the user navigated to /cv/ via the sidebar menu. This
+    // derives the counterpart-language URL from location.pathname, checks it
+    // against the server-rendered page list, and falls back to that language's
+    // homepage when the counterpart page does not exist (e.g. /projects/).
+    function __rcUpdateLangSwitch() {
+      var d = window.__rcLangSwitch;
+      var links = document.querySelectorAll('.rc-lang-switch');
+      if (!links.length || !d) return;
+
+      var root = d.root;                 // e.g. '/tanzicong/'
+      var fullPath = location.pathname;  // e.g. '/tanzicong/zh-CN/cv/'
+
+      // Strip the site root to get the site-relative path.
+      var rel = fullPath;
+      if (root && root !== '/' && fullPath.indexOf(root) === 0) {
+        rel = fullPath.slice(root.length);
+      }
+      if (!rel) rel = '/';
+      else if (rel.charAt(0) !== '/') rel = '/' + rel;
+
+      // Current language.
+      var isZh = /^\/zh-CN(\/|$)/.test(rel);
+
+      // Site-relative URL of the counterpart page (no root, no index.html).
+      var relTarget;
+      if (rel === '/' ) relTarget = '/zh-CN/';
+      else if (rel === '/zh-CN/' ) relTarget = '/';
+      else if (isZh) relTarget = rel.replace(/^\/zh-CN\//, '/');
+      else relTarget = '/zh-CN' + rel;
+
+      // The counterpart's Hexo page path ('cv/index.html', 'zh-CN/cv/index.html', …).
+      var targetPagePath;
+      if (relTarget === '/' ) targetPagePath = 'index.html';
+      else if (relTarget === '/zh-CN/' ) targetPagePath = 'zh-CN/index.html';
+      else targetPagePath = relTarget.replace(/^\/+|\/+$/g, '') + '/index.html';
+
+      var hasTarget = d.pages.indexOf(targetPagePath) > -1;
+
+      // Final href (with root). Fall back to the counterpart-language homepage.
+      var href;
+      if (hasTarget) {
+        href = (root || '/') + relTarget.replace(/^\/+/, '');
+      } else {
+        href = isZh ? (root || '/') : (root || '/') + 'zh-CN/';
+      }
+
+      var targetLang = isZh ? 'en' : 'zh-CN';
+      Array.prototype.forEach.call(links, function (a) {
+        if (a.getAttribute('data-rc-lang') === targetLang) {
+          a.setAttribute('href', href);
+        }
       });
     }
 
@@ -1636,6 +2543,7 @@ window.themeConfig = {
     document.addEventListener('DOMContentLoaded', function () {
       __rcInitMotion();
       __rcSetActive();
+      __rcUpdateLangSwitch();
       __rcInitToc();
       __rcInitViews();
       __rcInitTagCloud(); // before filters, so a ?tag= pre-selection is seen by the filter
@@ -1668,6 +2576,7 @@ window.themeConfig = {
           mTimer = window.setTimeout(function () {
             __rcInitMotion();
             __rcSetActive();
+            __rcUpdateLangSwitch();
             __rcInitToc();
             __rcInitViews();
             __rcInitTagCloud();
@@ -1846,6 +2755,7 @@ window.themeConfig = {
         swup.on('page:view', function () {
           // history is updated by now, so location.pathname is correct
           window.__rcSetActive && window.__rcSetActive();
+          window.__rcUpdateLangSwitch && window.__rcUpdateLangSwitch();
         });
       } catch (e) { /* if Swup fails, normal navigation still works */ }
     });

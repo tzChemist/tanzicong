@@ -1587,3 +1587,337 @@ html[data-no-reveal] .rc-reveal {
 .rc-list--compact .rc-card[data-expanded="true"] { min-height: 0; }
 .rc-list--compact .rc-card[data-expanded="true"] .rc-card-body { padding: 1.4rem; }
 .rc-card[data-expanded="true"] .rc-meta-line { margin-bottom: 1rem; }
+
+/* --------------------------------------------------------------------------
+   26. Research Interests — "面 → 点" funnel
+   Proposition (Surface) → three interfacial pathways → converge → Core (Site).
+   A single visual argument: three faces of one question, three techniques, one
+   atomic site. Uses the theme tokens so it follows light/dark + accent.
+   -------------------------------------------------------------------------- */
+
+/* 命题层 / 内核 panels — frame matches the site's standard cards (.rc-card) */
+.rc-ri-panel {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.4rem, 3vw, 2.2rem) clamp(1.25rem, 3vw, 2.25rem);
+  background: var(--rc-bg);
+  border: 1px solid color-mix(in oklab, var(--rc-line) 70%, transparent);
+  border-radius: var(--rc-radius-lg);
+  box-shadow: var(--rc-shadow-sm);
+}
+
+.rc-ri-panel-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.rc-ri-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.1rem;
+  height: 2.1rem;
+  padding: 0 0.55rem;
+  border-radius: var(--rc-radius-sm);
+  background: var(--rc-accent);
+  color: var(--rc-accent-ink);
+  font-family: var(--rc-font-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 14px -6px color-mix(in oklab, var(--rc-accent) 60%, transparent);
+}
+.rc-ri-caption {
+  font-size: 0.72rem;
+  font-weight: 640;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--rc-accent) 90%, transparent);
+}
+
+.rc-ri-title {
+  font-family: var(--rc-font-serif);
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--rc-ink);
+  margin: 0 0 0.85rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.rc-ri-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: color-mix(in oklab, var(--rc-ink) 78%, transparent);
+  max-width: 46rem;
+  margin: 0;
+}
+.rc-ri-question {
+  font-family: var(--rc-font-serif);
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  font-weight: 600;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--rc-accent) 82%, var(--rc-ink));
+  max-width: 46rem;
+  margin: 1.1rem 0 0;
+  padding-left: 0.9rem;
+  border-left: 2px solid color-mix(in oklab, var(--rc-accent) 55%, transparent);
+}
+
+/* 面 → 三条路径：three downward chevrons aligned with the columns */
+.rc-ri-drop {
+  display: none;
+}
+.rc-ri-drop-stem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rc-ri-drop-stem::before {
+  content: "";
+  width: 1.5px;
+  height: 2.1rem;
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--rc-accent) 50%, transparent));
+}
+
+/* the chevron glyph shared by drop + merge */
+.rc-ri-chevron {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: -0.2rem;
+  color: color-mix(in oklab, var(--rc-accent) 70%, transparent);
+}
+
+/* three interfacial pathway cards */
+.rc-ri-paths {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+.rc-ri-path {
+  position: relative;
+  background: var(--rc-bg);
+  border: 1px solid color-mix(in oklab, var(--rc-line) 70%, transparent);
+  border-radius: var(--rc-radius-lg);
+  box-shadow: var(--rc-shadow-sm);
+  padding: 1.35rem 1.4rem;
+  transition:
+    border-color var(--rc-dur) var(--rc-ease),
+    box-shadow var(--rc-dur) var(--rc-ease);
+}
+.rc-ri-path:hover {
+  border-color: color-mix(in oklab, var(--rc-accent) 40%, var(--rc-line));
+  box-shadow:
+    var(--rc-shadow-md),
+    0 14px 34px -16px color-mix(in oklab, var(--rc-accent) 24%, transparent);
+}
+.rc-ri-path-head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.rc-ri-path-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: calc(var(--rc-radius-md) + 0.15rem);
+  color: var(--rc-accent);
+  background: color-mix(in oklab, var(--rc-accent) 10%, transparent);
+  border: 1px solid color-mix(in oklab, var(--rc-accent) 16%, transparent);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.rc-ri-path-name {
+  font-family: var(--rc-font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--rc-ink);
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.rc-ri-path-sub {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.74rem;
+  font-weight: 640;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--rc-ink) 48%, transparent);
+}
+.rc-ri-path-items {
+  list-style: none;
+  margin: 1.05rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid color-mix(in oklab, var(--rc-line) 70%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.rc-ri-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--rc-ink) 82%, transparent);
+}
+.rc-ri-item::before {
+  content: "";
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  margin-top: 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--rc-accent) 45%, var(--rc-line));
+}
+.rc-ri-item-text {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+/* the starred "current project" entry — accent emphasis */
+.rc-ri-item-star {
+  margin-top: 0.1rem;
+  padding: 0.55rem 0.7rem;
+  margin-left: -0.7rem;
+  margin-right: -0.7rem;
+  border-radius: var(--rc-radius-sm);
+  background: color-mix(in oklab, var(--rc-accent) 9%, transparent);
+  border: 1px solid color-mix(in oklab, var(--rc-accent) 22%, transparent);
+  color: color-mix(in oklab, var(--rc-accent) 86%, var(--rc-ink));
+  font-weight: 560;
+}
+.rc-ri-item-star::before {
+  display: none;
+}
+.rc-ri-star {
+  flex-shrink: 0;
+  color: var(--rc-accent);
+  line-height: 1.5;
+}
+
+/* 收敛：a single centred stem + chevron gathers the three paths */
+.rc-ri-merge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+.rc-ri-merge::before {
+  content: "";
+  width: 1.5px;
+  height: 2.1rem;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--rc-accent) 30%, transparent), color-mix(in oklab, var(--rc-accent) 65%, transparent));
+}
+.rc-ri-convergence {
+  text-align: center;
+  font-family: var(--rc-font-serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: color-mix(in oklab, var(--rc-accent) 85%, var(--rc-ink));
+  margin: 0.55rem 0 1.4rem;
+}
+
+/* 内核：core panel — same neutral frame as the proposition */
+.rc-ri-panel-core {
+}
+.rc-ri-methods {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+.rc-ri-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--rc-radius-md);
+  background: color-mix(in oklab, var(--rc-bg) 66%, transparent);
+  border: 1px solid color-mix(in oklab, var(--rc-line) 62%, transparent);
+}
+.rc-ri-method-idx {
+  flex-shrink: 0;
+  font-family: var(--rc-font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.28rem 0.45rem;
+  border-radius: var(--rc-radius-sm);
+  color: var(--rc-accent);
+  background: color-mix(in oklab, var(--rc-accent) 11%, transparent);
+  border: 1px solid color-mix(in oklab, var(--rc-accent) 20%, transparent);
+}
+.rc-ri-method-name {
+  font-family: var(--rc-font-serif);
+  font-size: 1rem;
+  font-weight: 680;
+  line-height: 1.3;
+  color: var(--rc-ink);
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.rc-ri-method-note {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: color-mix(in oklab, var(--rc-ink) 60%, transparent);
+}
+.rc-ri-conclusion {
+  text-align: center;
+  font-family: var(--rc-font-serif);
+  font-size: 1.02rem;
+  font-weight: 560;
+  color: color-mix(in oklab, var(--rc-ink) 70%, transparent);
+  margin: 1.5rem 0 0;
+}
+.rc-ri-conclusion::before {
+  content: "";
+  display: block;
+  width: 2.6rem;
+  height: 1.5px;
+  margin: 0 auto 0.85rem;
+  background: var(--rc-accent);
+}
+
+/* responsive: 3 columns on large screens (drop aligns with paths) */
+@media (min-width: 1024px) {
+  .rc-ri-drop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+    margin: -0.1rem 0 0;
+  }
+  .rc-ri-paths { grid-template-columns: repeat(3, 1fr); }
+  .rc-ri-methods { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* homepage variant: three standalone interface panels (no funnel connectors) */
+.rc-ri-home-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+.rc-ri-panel-compact {
+  height: 100%;
+  padding: 1.5rem 1.4rem;
+}
+.rc-ri-title-sm {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  margin-bottom: 0;
+}
+.rc-ri-panel-items {
+  margin-top: 1rem;
+}
+@media (min-width: 1024px) {
+  .rc-ri-home-grid { grid-template-columns: repeat(3, 1fr); }
+}
