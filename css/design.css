@@ -815,6 +815,25 @@ a.rc-contact-item:hover { color: var(--rc-accent); }
   transform: scale(1.04) rotate(1.5deg);
 }
 
+/* Hero avatar — scales down on small screens so it sits nicely above the name */
+.rc-hero-avatar {
+  --rc-av-size: clamp(8.5rem, 34vw, 14rem);
+}
+
+/* Mobile hero avatar row — first in the DOM so it renders above the name on
+   narrow screens; hidden on lg where the large right-column avatar takes over.
+   Written as plain CSS (not Tailwind order-*) because order-* utilities are
+   not compiled into style.css. justify-content: center centres it above the
+   name — switch to flex-start to hug the left edge instead. */
+.rc-hero-avm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 1024px) {
+  .rc-hero-avm { display: none; }
+}
+
 /* --------------------------------------------------------------------------
    10b. Author name (hero title + sidebar profile) — independent font controls.
    Set any of these on :root (or a theme override) to customize the name ONLY,
@@ -1628,6 +1647,12 @@ html[data-no-reveal] .rc-reveal {
   letter-spacing: 0.02em;
   box-shadow: 0 6px 14px -6px color-mix(in oklab, var(--rc-accent) 60%, transparent);
 }
+/* inline SVG icon inside the glyph badge (e.g. the magnifying glass) */
+.rc-ri-glyph svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  display: block;
+}
 .rc-ri-caption {
   font-size: 0.72rem;
   font-weight: 640;
@@ -1665,29 +1690,17 @@ html[data-no-reveal] .rc-reveal {
   padding-left: 0.9rem;
   border-left: 2px solid color-mix(in oklab, var(--rc-accent) 55%, transparent);
 }
-
-/* 面 → 三条路径：three downward chevrons aligned with the columns */
-.rc-ri-drop {
-  display: none;
-}
-.rc-ri-drop-stem {
+/* the three research questions, stacked */
+.rc-ri-questions {
+  list-style: none;
+  margin: 1.15rem 0 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 0.7rem;
 }
-.rc-ri-drop-stem::before {
-  content: "";
-  width: 1.5px;
-  height: 2.1rem;
-  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--rc-accent) 50%, transparent));
-}
-
-/* the chevron glyph shared by drop + merge */
-.rc-ri-chevron {
-  width: 1.1rem;
-  height: 1.1rem;
-  margin-top: -0.2rem;
-  color: color-mix(in oklab, var(--rc-accent) 70%, transparent);
+.rc-ri-questions .rc-ri-question {
+  margin: 0;
 }
 
 /* three interfacial pathway cards */
@@ -1732,13 +1745,19 @@ html[data-no-reveal] .rc-reveal {
   font-size: 1.05rem;
   line-height: 1;
 }
+/* inline SVG icons inside the badge (vector graphic, inherits accent colour) */
+.rc-ri-path-icon svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: block;
+}
 .rc-ri-path-name {
   font-family: var(--rc-font-serif);
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  color: var(--rc-ink);
+  color: var(--rc-accent);
   margin: 0;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -1751,6 +1770,12 @@ html[data-no-reveal] .rc-reveal {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: color-mix(in oklab, var(--rc-ink) 48%, transparent);
+}
+.rc-ri-path-desc {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--rc-ink) 70%, transparent);
 }
 .rc-ri-path-items {
   list-style: none;
@@ -1803,26 +1828,48 @@ html[data-no-reveal] .rc-reveal {
   line-height: 1.5;
 }
 
-/* 收敛：a single centred stem + chevron gathers the three paths */
-.rc-ri-merge {
+/* vertical variant for the three research directions (projects-page funnel) */
+.rc-ri-paths-vertical {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 0.25rem;
+  gap: 2.75rem;
 }
-.rc-ri-merge::before {
-  content: "";
-  width: 1.5px;
-  height: 2.1rem;
-  background: linear-gradient(180deg, color-mix(in oklab, var(--rc-accent) 30%, transparent), color-mix(in oklab, var(--rc-accent) 65%, transparent));
+.rc-ri-path-vertical {
+  position: relative;
 }
-.rc-ri-convergence {
-  text-align: center;
-  font-family: var(--rc-font-serif);
-  font-size: 1.02rem;
-  font-weight: 600;
-  color: color-mix(in oklab, var(--rc-accent) 85%, var(--rc-ink));
-  margin: 0.55rem 0 1.4rem;
+.rc-ri-path-vertical .rc-ri-path-name {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+.rc-ri-path-rule {
+  width: 100%;
+  height: 1px;
+  margin: 0.6rem 0 0.8rem;
+  background: color-mix(in oklab, var(--rc-line) 70%, transparent);
+}
+.rc-ri-path-vertical .rc-ri-path-sub {
+  display: block;
+  margin: 0 0 0.55rem;
+  font-size: 0.76rem;
+  color: color-mix(in oklab, var(--rc-ink) 50%, transparent);
+}
+.rc-ri-path-items-vertical {
+  margin-top: 0.85rem;
+  padding-top: 0;
+  border-top: none;
+  gap: 0.5rem;
+}
+.rc-ri-path-items-vertical .rc-ri-item-star {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+/* spacing between the three stacked panels, and between a panel's title and its content */
+.rc-ri-panel + .rc-ri-panel {
+  margin-top: 1.75rem;
+}
+.rc-ri-panel .rc-ri-paths-vertical {
+  margin-top: 1.25rem;
 }
 
 /* 内核：core panel — same neutral frame as the proposition */
@@ -1889,27 +1936,17 @@ html[data-no-reveal] .rc-reveal {
   background: var(--rc-accent);
 }
 
-/* responsive: 3 columns on large screens (drop aligns with paths) */
+/* responsive: methods grid in the core panel becomes 3 columns on large screens */
 @media (min-width: 1024px) {
-  .rc-ri-drop {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.1rem;
-    margin: -0.1rem 0 0;
-  }
-  .rc-ri-paths { grid-template-columns: repeat(3, 1fr); }
   .rc-ri-methods { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* homepage variant: three standalone interface panels (no funnel connectors) */
+/* homepage variant: three standalone interface cards (same frame as .rc-card rc-focus
+   used by Featured Publications — consistent stacking in narrow windows) */
 .rc-ri-home-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.1rem;
-}
-.rc-ri-panel-compact {
-  height: 100%;
-  padding: 1.5rem 1.4rem;
+  gap: 1rem;
 }
 .rc-ri-title-sm {
   font-size: clamp(1.2rem, 2vw, 1.45rem);
